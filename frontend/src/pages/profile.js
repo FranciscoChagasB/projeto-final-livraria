@@ -4,6 +4,7 @@ import { getProfile, updateProfile } from '../services/userService';
 import Header from '../components/Header';
 import ProtectedRoute from '../services/ProtectedRoute';
 import "../styles/Profile.css";
+import Head from "next/head";
 
 export default function Profile() {
   const [user, setUser] = useState(null);
@@ -48,11 +49,22 @@ export default function Profile() {
     }
   };
 
-  if (loading) return <div className="loading-message">Carregando...</div>;
-  if (error) return <div className="error-message">{error}</div>;
+  if (loading) return <div className="loading-message">Carregando...
+    <Head>
+      <title>Sistema de Gerenciamento de Biblioteca</title>
+    </Head>
+  </div>;
+  if (error) return <div className="error-message">{error}
+    <Head>
+      <title>Sistema de Gerenciamento de Biblioteca</title>
+    </Head>
+  </div>;
 
   return (
     <ProtectedRoute>
+      <Head>
+        <title>Sistema de Gerenciamento de Biblioteca</title>
+      </Head>
       <div className="user-profile-container">
         <Header />
         <h2>Perfil</h2>

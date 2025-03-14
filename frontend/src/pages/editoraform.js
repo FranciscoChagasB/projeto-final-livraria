@@ -4,6 +4,7 @@ import IMask from "imask";
 import "../styles/EditoraForm.css";
 import ProtectedRoute from "../services/ProtectedRoute";
 import Header from '../components/Header';
+import Head from "next/head";
 
 const EditoraForm = () => {
     const router = useRouter();
@@ -39,7 +40,6 @@ const EditoraForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Aqui você pode adicionar a lógica para atualizar a editora no servidor
         if (isEditing) {
             console.log("Editora atualizada:", formData);
         } else {
@@ -49,6 +49,9 @@ const EditoraForm = () => {
 
     return (
         <ProtectedRoute>
+            <Head>
+                <title>Sistema de Gerenciamento de Biblioteca</title>
+            </Head>
             <div className="form-container">
                 <Header />
                 <h2 className="form-title">{isEditing ? "Editar Editora" : "Cadastrar Editora"}</h2>
@@ -98,7 +101,7 @@ const EditoraForm = () => {
                             placeholder="Digite o CNPJ"
                             value={formData.cnpj}
                             onChange={handleChange}
-                            ref={cnpjInputRef} // Referência para o campo de CNPJ
+                            ref={cnpjInputRef}
                         />
                     </div>
 

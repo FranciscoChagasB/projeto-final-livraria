@@ -3,22 +3,26 @@ import { useRouter } from 'next/router';
 import { login } from '../services/userService';
 import Link from 'next/link';
 import "../styles/Login.css";
+import Head from "next/head";
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setErrorMessage('');
+
     try {
       const response = await login(email, password);
       localStorage.setItem('token', response.token);
       router.push('/home');
     } catch (error) {
-      alert('Erro ao fazer login');
+      setErrorMessage(error.response?.data?.message || 'Erro ao fazer login');
     } finally {
       setLoading(false);
     }
@@ -26,6 +30,10 @@ export default function Login() {
 
   return (
     <div className="login-container">
+      <Head>
+        <title>Sistema de Gerenciamento de Biblioteca</title>
+      </Head>
+      {errorMessage && <div className="error-message">{errorMessage}</div>}
       <h2>Login</h2>
       <form className="login-form" onSubmit={handleSubmit}>
         <input

@@ -8,6 +8,7 @@ import "../styles/Livro.css";
 import ProtectedRoute from "../services/ProtectedRoute";
 import Header from '../components/Header';
 import { GenerosEnum } from "../enum/GeneroEnum";
+import Head from "next/head";
 
 const LivroManager = () => {
     const [livros, setLivros] = useState([]);
@@ -64,6 +65,9 @@ const LivroManager = () => {
 
     return (
         <ProtectedRoute>
+            <Head>
+                <title>Sistema de Gerenciamento de Biblioteca</title>
+            </Head>
             <div className="livro-container">
                 <Header />
                 <h2 className="livro-title">Relação de Livros</h2>

@@ -5,6 +5,7 @@ import "../styles/LivroForm.css";
 import ProtectedRoute from "../services/ProtectedRoute";
 import Header from '../components/Header';
 import { GenerosEnum } from "../enum/GeneroEnum";
+import Head from "next/head";
 
 const LivroForm = () => {
     const router = useRouter();
@@ -42,7 +43,6 @@ const LivroForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Aqui você pode adicionar a lógica para atualizar o livro no servidor
         if (isEditing) {
             console.log("Livro atualizado:", formData);
         } else {
@@ -52,6 +52,9 @@ const LivroForm = () => {
 
     return (
         <ProtectedRoute>
+            <Head>
+                <title>Sistema de Gerenciamento de Biblioteca</title>
+            </Head>
             <div className="form-container">
                 <Header />
                 <h2 className="form-title">{isEditing ? "Editar Livro" : "Cadastrar Livro"}</h2>

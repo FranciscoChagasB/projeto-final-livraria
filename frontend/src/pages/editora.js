@@ -6,13 +6,14 @@ import { useRef } from "react";
 import "../styles/Editora.css";
 import ProtectedRoute from "../services/ProtectedRoute";
 import Header from '../components/Header';
+import Head from "next/head";
 
 const EditoraManager = () => {
     const [editoras, setEditoras] = useState([]);
     const [filters, setFilters] = useState({ nome: "", emailContato: "", cnpj: "" });
     const [page, setPage] = useState(1);
-    const [limit, setLimit] = useState(10);  // Default to 10 records per page
-    const [totalRecords, setTotalRecords] = useState(0);  // Total records to display
+    const [limit, setLimit] = useState(10);
+    const [totalRecords, setTotalRecords] = useState(0);
 
     const cnpjInputRef = useRef(null);  // Usando useRef para referenciar o campo de CNPJ
 
@@ -32,7 +33,7 @@ const EditoraManager = () => {
     const fetchEditoras = async () => {
         const data = await getEditorasByFilters(filters, page, limit);
         setEditoras(data.data);
-        setTotalRecords(data.total);  // Assume that the API returns the total count of records
+        setTotalRecords(data.total);
     };
 
     const handleDelete = async (id) => {
@@ -42,7 +43,7 @@ const EditoraManager = () => {
 
     const handleLimitChange = (e) => {
         setLimit(e.target.value);
-        setPage(1);  // Reset to the first page whenever the limit changes
+        setPage(1);
     };
 
     const handleFilterChange = (e) => {
@@ -55,6 +56,9 @@ const EditoraManager = () => {
 
     return (
         <ProtectedRoute>
+            <Head>
+                <title>Sistema de Gerenciamento de Biblioteca</title>
+            </Head>
             <div className="editora-container">
                 <Header />
                 <h2 className="editora-title">Relação de Editoras</h2>
