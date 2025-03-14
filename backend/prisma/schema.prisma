@@ -29,6 +29,22 @@ model Editora {
   emailContato String  @unique
   telefone     String?
   cnpj         String  @unique
+  livros       Livro[]  @relation("EditoraLivros")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Livro {
+  id           Int      @id @default(autoincrement())
+  titulo       String
+  autor        String
+  isbn         String   @unique
+  ano          Int
+  dataInserido DateTime @default(now())
+  isDisponivel Boolean  @default(true)
+  genero       String
+  editoraId    Int
+  editora      Editora  @relation("EditoraLivros", fields: [editoraId], references: [id])
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }

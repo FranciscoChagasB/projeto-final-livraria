@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import IMask from "imask";
-import "../styles/Form.css";
+import "../styles/EditoraForm.css";
 import ProtectedRoute from "../services/ProtectedRoute";
 import Header from '../components/Header';
 

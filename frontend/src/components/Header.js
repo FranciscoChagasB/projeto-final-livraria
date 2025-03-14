@@ -50,7 +50,7 @@ const Header = () => {
         <nav className="nav">
           <ul>
             <li><Link href="/editora">Editoras</Link></li>
-            <li><Link href="/teste2">Teste 2</Link></li>
+            <li><Link href="/livro">Livros</Link></li>
             <li><Link href="/teste3">Teste 3</Link></li>
             <li><Link href="/teste4">Teste 4</Link></li>
             <li><Link href="/teste5">Teste 5</Link></li>
