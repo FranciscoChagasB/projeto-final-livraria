@@ -18,6 +18,6 @@ app.use('/api/users', userRoutes);
 app.use('/api/editoras', editoraRoutes);
 app.use('/api/livros', livroRoutes)
 
-app.listen(3000, () => {
-    console.log('Servidor rodando na porta 3000');
+app.listen(8090, () => {
+    console.log('Servidor rodando na porta 8090');
 });

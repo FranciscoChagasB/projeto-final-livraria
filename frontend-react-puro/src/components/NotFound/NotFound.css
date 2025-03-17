@@ -1,0 +1,36 @@
+.page-not-found-container {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 40px;
+    background-color: #f4f9f4;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.page-not-found-title {
+    font-size: 3rem;
+    color: #3b9d56;
+    margin-bottom: 20px;
+}
+
+.page-not-found-message {
+    font-size: 1.5rem;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.page-not-found-btn {
+    background-color: #3b9d56;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.page-not-found-btn:hover {
+    background-color: #2a7b41;
+}
