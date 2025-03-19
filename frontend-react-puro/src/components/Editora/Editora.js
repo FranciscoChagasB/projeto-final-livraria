@@ -82,7 +82,7 @@ const Editora = () => {
                                 <td>{editora.telefone || "N/A"}</td>
                                 <td>{editora.cnpj}</td>
                                 <td>
-                                    <Link to={`/editoraform?id=${editora.id}`}>
+                                    <Link to={`/editoraform/${editora.id}`}>
                                         <button className="editora-btn-edit">Editar</button>
                                     </Link>
                                     <button className="editora-btn-delete" onClick={() => handleDelete(editora.id)}>Excluir</button>

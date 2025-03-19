@@ -40,7 +40,9 @@ function App() {
         <Route path="/livro" element={<ProtectedRoute><Livro /></ProtectedRoute>} />
         <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
         <Route path='/editoraform' element={<ProtectedRoute><EditoraForm /></ProtectedRoute>} />
+        <Route path='/editoraform/:id' element={<ProtectedRoute><EditoraForm /></ProtectedRoute>} />
         <Route path='/livrosform' element={<ProtectedRoute><LivroForm /></ProtectedRoute>} />
+        <Route path='/livrosform/:id' element={<ProtectedRoute><LivroForm /></ProtectedRoute>} />
         
         {/* Rota padrão ou erro 404 */}
         <Route path="*" element={<PageNotFound />} />

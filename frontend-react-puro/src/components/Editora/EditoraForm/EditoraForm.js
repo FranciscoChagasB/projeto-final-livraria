@@ -3,19 +3,16 @@ import { useParams, useNavigate, useLocation } from "react-router-dom";
 import IMask from "imask";
 import "./EditoraForm.css";
 import { Helmet } from "react-helmet";
-import { createEditora, updateEditora } from "../../../services/editorasService";
+import { createEditora, updateEditora, getEditoraById } from "../../../services/editorasService";
 
 const EditoraForm = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const location = useLocation();
-    const queryParams = new URLSearchParams(location.search);
-
     const [formData, setFormData] = useState({
-        nome: queryParams.get("nome") || "",
-        emailContato: queryParams.get("emailContato") || "",
-        telefone: queryParams.get("telefone") || "",
-        cnpj: queryParams.get("cnpj") || "",
+        nome: "",
+        emailContato: "",
+        telefone: "",
+        cnpj: "",
     });
 
     const [isEditing, setIsEditing] = useState(false);
@@ -25,11 +22,28 @@ const EditoraForm = () => {
     useEffect(() => {
         if (id) {
             setIsEditing(true);
+            fetchEditoraData(id);
         }
         if (cnpjInputRef.current) {
             IMask(cnpjInputRef.current, { mask: "00.000.000/0000-00" });
         }
     }, [id]);
+
+    const fetchEditoraData = async (editoraId) => {
+        try {
+            const data = await getEditoraById(editoraId);
+            if (data) {
+                setFormData({
+                    nome: data.nome || "",
+                    emailContato: data.emailContato || "",
+                    telefone: data.telefone || "",
+                    cnpj: data.cnpj || "",
+                });
+            }
+        } catch (error) {
+            console.error("Erro ao carregar editora:", error);
+        }
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;

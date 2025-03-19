@@ -17,9 +17,18 @@ const Livro = () => {
     const navigate = useNavigate();
 
     const fetchLivros = useCallback(async () => {
-        const data = await getLivrosByFilters(filters, page, limit);
-        setLivros(data.data);
-        setTotalRecords(data.total);
+        console.log("Filtros aplicados:", filters);
+        if (filters.isDisponivel === "") {
+            // Remova o filtro de disponibilidade ao buscar os livros
+            const { isDisponivel, ...otherFilters } = filters;
+            const data = await getLivrosByFilters(otherFilters, page, limit);
+            setLivros(data.data);
+            setTotalRecords(data.total);
+        } else {
+            const data = await getLivrosByFilters(filters, page, limit);
+            setLivros(data.data);
+            setTotalRecords(data.total);
+        }
     }, [filters, page, limit, setTotalRecords]);
 
     const fetchEditoras = async () => {
@@ -51,6 +60,7 @@ const Livro = () => {
     const handleFilterChange = (e) => {
         const { name, value } = e.target;
         setFilters(prevFilters => ({ ...prevFilters, [name]: value }));
+        
     };
 
     return (
@@ -89,6 +99,7 @@ const Livro = () => {
                             <th>ISBN</th>
                             <th>Disponível</th>
                             <th>Editora</th>
+                            <th>Gênero</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
@@ -99,6 +110,7 @@ const Livro = () => {
                                 <td>{livro.isbn}</td>
                                 <td>{livro.isDisponivel ? "Sim" : "Não"}</td>
                                 <td>{livro.editora.nome}</td>
+                                <td>{livro.genero ? livro.genero.charAt(0).toUpperCase() + livro.genero.slice(1) : "Não informado"}</td>
                                 <td>
                                     <button className="livro-btn-edit" onClick={() => navigate("/livrosform", { state: livro })}>Editar</button>
                                     <button className="livro-btn-delete" onClick={() => handleDelete(livro.id)}>Excluir</button>

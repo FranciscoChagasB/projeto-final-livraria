@@ -4,7 +4,7 @@ import { getProfile, updateProfile } from '../../services/userService';
 import "./Profile.css";
 
 const Profile = () => {
-    const [setUser] = useState(null);
+    const [user, setUser] = useState(null);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [cpf, setCpf] = useState('');
@@ -16,6 +16,7 @@ const Profile = () => {
         const fetchProfile = async () => {
             try {
                 const profile = await getProfile();
+                console.log('Perfil retornado:', profile);  // Logar a resposta
                 if (!profile) throw new Error("Perfil não encontrado");
 
                 setUser(profile);
@@ -66,7 +67,7 @@ const Profile = () => {
                         onChange={(e) => setName(e.target.value)}
                         placeholder="Nome"
                         required
-                        
+
                     />
                     <label>CPF</label>
                     <input

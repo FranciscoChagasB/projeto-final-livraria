@@ -1,32 +1,38 @@
 import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import IMask from "imask";
 import { GenerosEnum } from "../../../enum/GeneroEnum";
 import { createLivro, updateLivro } from "../../../services/livrosService";
+import { getEditoras } from "../../../services/editorasService";
 
 const LivroForm = () => {
     const [formData, setFormData] = useState({
         titulo: "",
         autor: "",
         isbn: "",
-        editora: "",
-        anoPublicacao: "",
+        editoraId: "",
+        ano: "",
         genero: ""
     });
 
+    const [editoras, setEditoras] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
-    const [livroId, setLivroId] = useState(null);
     const isbnInputRef = useRef(null);
     const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
-        const urlParams = new URLSearchParams(window.location.search);
-        const id = urlParams.get("id");
+        const fetchEditoras = async () => {
+            const data = await getEditoras(1, 999);
+            setEditoras(data.data);
+        };
 
-        if (id) {
+        fetchEditoras();
+
+        // Verifica se está editando
+        if (location.state) {
             setIsEditing(true);
-            setLivroId(id);
-            fetchLivro(id);
+            setFormData(location.state);
         }
 
         if (isbnInputRef.current) {
@@ -34,33 +40,31 @@ const LivroForm = () => {
                 mask: "000-0-00-000000-0", // Máscara para ISBN
             });
         }
-    }, []);
-
-    const fetchLivro = async (id) => {
-        try {
-            const response = await fetch(`http://localhost:8090/api/livros/${id}`);
-            if (response.ok) {
-                const data = await response.json();
-                setFormData(data);
-            } else {
-                console.error("Erro ao buscar livro");
-            }
-        } catch (error) {
-            console.error("Erro ao buscar livro:", error);
-        }
-    };
+    }, [location.state]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+        setFormData({
+            ...formData,
+            [name]: name === "editoraId" || name === "ano" ? Number(value) : value
+        });
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const { titulo, isbn, ano, genero, editoraId } = formData;
+
+        console.log("FormData enviado: ", formData);
         
+        if (!titulo || !isbn || !ano || !genero || !editoraId) {
+            alert("Todos os campos obrigatórios devem ser preenchidos.");
+            return;
+        }
+
         try {
             if (isEditing) {
-                await updateLivro(livroId, formData);
+                await updateLivro(formData.id, formData);
                 alert("Livro atualizado com sucesso!");
             } else {
                 await createLivro(formData);
@@ -114,25 +118,30 @@ const LivroForm = () => {
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="editora">Editora</label>
-                    <input
-                        type="text"
-                        id="editora"
-                        name="editora"
-                        placeholder="Digite a editora do livro"
-                        value={formData.editora}
+                    <label htmlFor="editoraId">Editora</label>
+                    <select
+                        id="editoraId"
+                        name="editoraId"
+                        value={formData.editoraId}
                         onChange={handleChange}
-                    />
+                    >
+                        <option value="">Selecione uma editora</option>
+                        {editoras.map((editora) => (
+                            <option key={editora.id} value={editora.id}>
+                                {editora.nome}
+                            </option>
+                        ))}
+                    </select>
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="anoPublicacao">Ano de Publicação</label>
+                    <label htmlFor="ano">Ano de Publicação</label>
                     <input
                         type="number"
-                        id="anoPublicacao"
-                        name="anoPublicacao"
+                        id="ano"
+                        name="ano"
                         placeholder="Digite o ano de publicação"
-                        value={formData.anoPublicacao}
+                        value={formData.ano}
                         onChange={handleChange}
                     />
                 </div>
