@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import ProtectedRoute from './services/ProtectedRoute';
 import Header from './components/Header/Header';
 import Editora from './components/Editora/Editora.js';
@@ -34,6 +34,7 @@ function App() {
         <Route path="/register" element={<Register />} />
 
         {/* Rotas protegidas (necessitam de login) */}
+        <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
         <Route path="/editora" element={<ProtectedRoute><Editora /></ProtectedRoute>} />
         <Route path="/livro" element={<ProtectedRoute><Livro /></ProtectedRoute>} />

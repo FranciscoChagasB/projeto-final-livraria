@@ -94,6 +94,7 @@ const Editora = () => {
             </div>
 
             <div className="editora-pagination">
+                <p>Total: {totalRecords}</p>
                 <label>
                     Registros por página:
                     <select value={limit} onChange={handleLimitChange}>

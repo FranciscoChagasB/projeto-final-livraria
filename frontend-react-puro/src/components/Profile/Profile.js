@@ -4,7 +4,7 @@ import { getProfile, updateProfile } from '../../services/userService';
 import "./Profile.css";
 
 const Profile = () => {
-    const [user, setUser] = useState(null);
+    const [setUser] = useState(null);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [cpf, setCpf] = useState('');

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { getLivrosByFilters, deleteLivro } from "../../services/livrosService";
 import { getEditoras } from "../../services/editorasService";
 import { useNavigate } from "react-router-dom";
@@ -16,27 +16,27 @@ const Livro = () => {
     const isbnInputRef = useRef(null);
     const navigate = useNavigate();
 
+    const fetchLivros = useCallback(async () => {
+        const data = await getLivrosByFilters(filters, page, limit);
+        setLivros(data.data);
+        setTotalRecords(data.total);
+    }, [filters, page, limit, setTotalRecords]);
+
+    const fetchEditoras = async () => {
+        const data = await getEditoras(1, 999);
+        setEditoras(data.data);
+    };
+
     useEffect(() => {
         fetchLivros();
         fetchEditoras();
-    }, [page, filters, limit]);
+    }, [fetchLivros, page, filters, limit]);
 
     useEffect(() => {
         if (isbnInputRef.current) {
             IMask(isbnInputRef.current, { mask: "000-0-00-000000-0" });
         }
     }, []);
-
-    const fetchLivros = async () => {
-        const data = await getLivrosByFilters(filters, page, limit);
-        setLivros(data.data);
-        setTotalRecords(data.total);
-    };
-
-    const fetchEditoras = async () => {
-        const data = await getEditoras(1, 999);
-        setEditoras(data.data);
-    };
 
     const handleDelete = async (id) => {
         await deleteLivro(id);
@@ -110,6 +110,7 @@ const Livro = () => {
             </div>
 
             <div className="livro-pagination">
+                <p>Total: {totalRecords}</p>
                 <label>
                     Registros por página:
                     <select value={limit} onChange={handleLimitChange}>
