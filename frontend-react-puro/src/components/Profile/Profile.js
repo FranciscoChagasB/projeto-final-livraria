@@ -55,34 +55,40 @@ const Profile = () => {
     );
 
     return (
-        <div className="user-profile-container">
-            <h2>Perfil</h2>
-            <form className="user-profile-form" onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="Nome"
-                    required
-                />
-                <input
-                    type="text"
-                    value={cpf}
-                    onChange={(e) => setCpf(e.target.value)}
-                    placeholder="CPF"
-                    required
-                />
-                <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Email"
-                    required
-                />
-                <button type="submit" className="user-profile-button" disabled={loading}>
-                    {loading ? 'Carregando...' : 'Atualizar'}
-                </button>
-            </form>
+        <div className="container">
+            <div className="user-profile-container">
+                <h1 tabIndex="-1">Perfil</h1>
+                <form className="user-profile-form" onSubmit={handleSubmit}>
+                    <label>Nome</label>
+                    <input
+                        type="text"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Nome"
+                        required
+                        
+                    />
+                    <label>CPF</label>
+                    <input
+                        type="text"
+                        value={cpf}
+                        onChange={(e) => setCpf(e.target.value)}
+                        placeholder="CPF"
+                        required
+                    />
+                    <label>Email</label>
+                    <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Email"
+                        required
+                    />
+                    <button type="submit" className="user-profile-button" disabled={loading}>
+                        {loading ? 'Carregando...' : 'Atualizar'}
+                    </button>
+                </form>
+            </div>
         </div>
     );
 }
