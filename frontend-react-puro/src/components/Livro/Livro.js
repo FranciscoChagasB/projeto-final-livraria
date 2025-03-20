@@ -13,33 +13,42 @@ const Livro = () => {
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(10);
     const [totalRecords, setTotalRecords] = useState(0);
+    const [errorMessage, setErrorMessage] = useState("");
+    const [successMessage, setSuccessMessage] = useState("");
     const isbnInputRef = useRef(null);
     const navigate = useNavigate();
 
     const fetchLivros = useCallback(async () => {
-        console.log("Filtros aplicados:", filters);
-        if (filters.isDisponivel === "") {
-            // Remova o filtro de disponibilidade ao buscar os livros
-            const { isDisponivel, ...otherFilters } = filters;
-            const data = await getLivrosByFilters(otherFilters, page, limit);
+        try {
+            let data;
+            if (filters.isDisponivel === "") {
+                const { isDisponivel, ...otherFilters } = filters;
+                data = await getLivrosByFilters(otherFilters, page, limit);
+            } else {
+                data = await getLivrosByFilters(filters, page, limit);
+            }
             setLivros(data.data);
             setTotalRecords(data.total);
-        } else {
-            const data = await getLivrosByFilters(filters, page, limit);
-            setLivros(data.data);
-            setTotalRecords(data.total);
+        } catch (error) {
+            setErrorMessage("Erro ao carregar os livros.");
+            clearMessages();
         }
-    }, [filters, page, limit, setTotalRecords]);
+    }, [filters, page, limit]);
 
-    const fetchEditoras = async () => {
-        const data = await getEditoras(1, 999);
-        setEditoras(data.data);
-    };
+    const fetchEditoras = useCallback(async () => {
+        try {
+            const data = await getEditoras(1, 999);
+            setEditoras(data.data);
+        } catch (error) {
+            setErrorMessage("Erro ao carregar editoras.");
+            clearMessages();
+        }
+    }, []);
 
     useEffect(() => {
         fetchLivros();
         fetchEditoras();
-    }, [fetchLivros, page, filters, limit]);
+    }, [fetchLivros, fetchEditoras, page, filters, limit]);
 
     useEffect(() => {
         if (isbnInputRef.current) {
@@ -48,8 +57,15 @@ const Livro = () => {
     }, []);
 
     const handleDelete = async (id) => {
-        await deleteLivro(id);
-        fetchLivros();
+        try {
+            await deleteLivro(id);
+            setSuccessMessage("Livro excluído com sucesso!");
+            fetchLivros();
+        } catch (error) {
+            setErrorMessage("Erro ao excluir livro.");
+        } finally {
+            clearMessages();
+        }
     };
 
     const handleLimitChange = (e) => {
@@ -60,13 +76,23 @@ const Livro = () => {
     const handleFilterChange = (e) => {
         const { name, value } = e.target;
         setFilters(prevFilters => ({ ...prevFilters, [name]: value }));
-        
+
+    };
+
+    const clearMessages = () => {
+        setTimeout(() => {
+            setErrorMessage("");
+            setSuccessMessage("");
+        }, 3000);
     };
 
     return (
         <div className="livro-container">
             <h2 className="livro-title">Relação de Livros</h2>
             <button className="livro-btn-new" onClick={() => navigate("/livrosform")}>Novo Registro</button>
+
+            {errorMessage && <p className="error-message">{errorMessage}</p>}
+            {successMessage && <p className="success-message">{successMessage}</p>}
 
             <div className="livro-filter">
                 <span>Pesquisar</span>
