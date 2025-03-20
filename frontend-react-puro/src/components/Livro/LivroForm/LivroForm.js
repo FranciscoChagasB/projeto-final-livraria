@@ -17,14 +17,21 @@ const LivroForm = () => {
 
     const [editoras, setEditoras] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
+    const [successMessage, setSuccessMessage] = useState("");
     const isbnInputRef = useRef(null);
     const navigate = useNavigate();
     const location = useLocation();
 
     useEffect(() => {
         const fetchEditoras = async () => {
-            const data = await getEditoras(1, 999);
-            setEditoras(data.data);
+            try {
+                const data = await getEditoras(1, 999);
+                setEditoras(data.data);
+            } catch (error) {
+                setErrorMessage("Erro ao carregar editoras.");
+                clearMessages();
+            }
         };
 
         fetchEditoras();
@@ -58,27 +65,41 @@ const LivroForm = () => {
         console.log("FormData enviado: ", formData);
         
         if (!titulo || !isbn || !ano || !genero || !editoraId) {
-            alert("Todos os campos obrigatórios devem ser preenchidos.");
+            setErrorMessage("Todos os campos obrigatórios devem ser preenchidos.");
+            clearMessages();
             return;
         }
 
         try {
             if (isEditing) {
                 await updateLivro(formData.id, formData);
-                alert("Livro atualizado com sucesso!");
+                setSuccessMessage("Livro atualizado com sucesso!");
             } else {
                 await createLivro(formData);
-                alert("Livro cadastrado com sucesso!");
+                setSuccessMessage("Livro cadastrado com sucesso!");
             }
-            navigate("/livro"); // Redireciona para a página de livros
+            clearMessages();
+            setTimeout(() => navigate("/livro"), 1000);
         } catch (error) {
-            alert("Erro ao salvar livro. Verifique os dados e tente novamente.");
+            setErrorMessage("Erro ao salvar livro. Verifique os dados e tente novamente.");
+            clearMessages();
         }
+    };
+
+    const clearMessages = () => {
+        setTimeout(() => {
+            setErrorMessage("");
+            setSuccessMessage("");
+        }, 3000);
     };
 
     return (
         <div className="form-container">
             <h2 className="form-title">{isEditing ? "Editar Livro" : "Cadastrar Livro"}</h2>
+
+            {errorMessage && <p className="error-message">{errorMessage}</p>}
+            {successMessage && <p className="success-message">{successMessage}</p>}
+
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="titulo">Título</label>
