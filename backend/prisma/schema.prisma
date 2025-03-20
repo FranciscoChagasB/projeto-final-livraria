@@ -34,6 +34,29 @@ model Editora {
   updatedAt    DateTime @updatedAt
 }
 
+model Aluno {
+  id          Int       @id @default(autoincrement())
+  nome        String
+  email       String    @unique
+  telefone    String?
+  matricula   String    @unique
+  emprestimos Emprestimo[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Emprestimo {
+  id         Int      @id @default(autoincrement())
+  alunoId    Int
+  aluno      Aluno    @relation(fields: [alunoId], references: [id])
+  livros     EmprestimoLivro[]
+  dataInicio DateTime @default(now())
+  dataFim    DateTime
+  devolvido  Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
 model Livro {
   id           Int      @id @default(autoincrement())
   titulo       String
@@ -45,6 +68,15 @@ model Livro {
   genero       String
   editoraId    Int
   editora      Editora  @relation("EditoraLivros", fields: [editoraId], references: [id])
+  emprestimos  EmprestimoLivro[]
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+}
+
+model EmprestimoLivro {
+  id           Int        @id @default(autoincrement())
+  emprestimoId Int
+  livroId      Int
+  emprestimo   Emprestimo @relation(fields: [emprestimoId], references: [id])
+  livro        Livro      @relation(fields: [livroId], references: [id])
 }
