@@ -2,7 +2,7 @@
 
 
 .header-container {
-    background-color: #314c53;
+    background-color: #002a30;
     padding: 10px 20px;
     display: flex;
     align-items: center;
@@ -54,9 +54,11 @@
 }
 
 .nav ul li a:hover {
-    background-color: #010300;
+    background-color: #a6dbc8bd;
+    color: #f0f0f0fb;
+    font-size: 20px;
     border-radius: 5px;
-    transition: 0.9s;
+    transition: 0.2s;
 }
 
 .profile-container {

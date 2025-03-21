@@ -48,8 +48,8 @@ const Header = () => {
                         <li><Link to="/home">Home</Link></li>
                         <li><Link to="/editora">Editoras</Link></li>
                         <li><Link to="/livro">Livros</Link></li>
-                        <li><Link to="/teste3">Emprestimo</Link></li>
-                        <li><Link to="/teste4">Cadastro aluno</Link></li>
+                        <li><Link to="/emprestimo">Emprestimo</Link></li>
+                        <li><Link to="/aluno">Cadastro aluno</Link></li>
                     </ul>
                 </nav>
 

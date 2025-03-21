@@ -7,6 +7,8 @@ import Livro from './components/Livro/Livro.js';
 import Home from './components/Home/Home.js';
 import Profile from './components/Profile/Profile.js';
 import Login from './components/Login/LoginUser.js'
+import Emprestimo from './components/emprestimo/emprestimo.js'
+import Aluno from './components/aluno/aluno.js'
 import Register from './components/Login/RegisterUser.js';
 import LivroForm from './components/Livro/LivroForm/LivroForm.js';
 import EditoraForm from './components/Editora/EditoraForm/EditoraForm.js';
@@ -39,6 +41,8 @@ function App() {
         <Route path="/editora" element={<ProtectedRoute><Editora /></ProtectedRoute>} />
         <Route path="/livro" element={<ProtectedRoute><Livro /></ProtectedRoute>} />
         <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+        <Route path="/emprestimo" element={<ProtectedRoute><Emprestimo /></ProtectedRoute>} />
+        <Route path="/aluno" element={<ProtectedRoute><Aluno /></ProtectedRoute>} />
         <Route path='/editoraform' element={<ProtectedRoute><EditoraForm /></ProtectedRoute>} />
         <Route path='/editoraform/:id' element={<ProtectedRoute><EditoraForm /></ProtectedRoute>} />
         <Route path='/livrosform' element={<ProtectedRoute><LivroForm /></ProtectedRoute>} />
