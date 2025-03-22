@@ -13,12 +13,36 @@ const LivroForm = () => {
     });
 
     const [isEditing, setIsEditing] = useState(false);
+<<<<<<< Updated upstream
 
     const isbnInputRef = useRef(null);
 
     useEffect(() => {
         // Aqui, você pode colocar um código para verificar se está editando
         if (window.location.search.includes("id=")) {
+=======
+<<<<<<< Updated upstream
+
+=======
+>>>>>>> Stashed changes
+    const isbnInputRef = useRef(null);
+
+    useEffect(() => {
+<<<<<<< Updated upstream
+        // Aqui, você pode colocar um código para verificar se está editando
+        if (window.location.search.includes("id=")) {
+=======
+        const fetchEditoras = async () => {
+            const data = await getEditoras(1, 999);
+            setEditoras(data.data);
+        };
+
+        fetchEditoras();
+
+        // Verifica se está editando
+        if (location.state) {
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
             setIsEditing(true);
         }
 
@@ -36,11 +60,43 @@ const LivroForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
         if (isEditing) {
             console.log("Livro atualizado:", formData);
         } else {
             console.log("Livro cadastrado:", formData);
+<<<<<<< Updated upstream
         }
+=======
+        }
+=======
+
+        const { titulo, isbn, ano, genero, editoraId } = formData;
+
+        console.log("FormData enviado: ", formData);
+        
+        if (!titulo || !isbn || !ano || !genero || !editoraId) {
+            alert("Todos os campos obrigatórios devem ser preenchidos.");
+            return;
+        }
+
+        try {
+            if (isEditing) {
+                await updateLivro(formData.id, formData);
+                alert("Livro atualizado com sucesso!");
+            } else {
+                await createLivro(formData);
+                alert("Livro cadastrado com sucesso!");
+            }
+            navigate("/livro"); // Redireciona para a página de livros
+        } catch (error) {
+            alert("Erro ao salvar livro. Verifique os dados e tente novamente.");
+        }
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
     };
 
     return (

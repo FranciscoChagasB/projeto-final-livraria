@@ -16,6 +16,7 @@ const Profile = () => {
         const fetchProfile = async () => {
             try {
                 const profile = await getProfile();
+                console.log('Perfil retornado:', profile);  // Logar a resposta
                 if (!profile) throw new Error("Perfil não encontrado");
 
                 setUser(profile);
@@ -55,6 +56,10 @@ const Profile = () => {
     );
 
     return (
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
         <div className="user-profile-container">
             <h2>Perfil</h2>
             <form className="user-profile-form" onSubmit={handleSubmit}>
@@ -83,6 +88,45 @@ const Profile = () => {
                     {loading ? 'Carregando...' : 'Atualizar'}
                 </button>
             </form>
+<<<<<<< Updated upstream
+=======
+=======
+        <div className="container">
+            <div className="user-profile-container">
+                <h1 tabIndex="-1">Perfil</h1>
+                <form className="user-profile-form" onSubmit={handleSubmit}>
+                    <label>Nome</label>
+                    <input
+                        type="text"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Nome"
+                        required
+
+                    />
+                    <label>CPF</label>
+                    <input
+                        type="text"
+                        value={cpf}
+                        onChange={(e) => setCpf(e.target.value)}
+                        placeholder="CPF"
+                        required
+                    />
+                    <label>Email</label>
+                    <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Email"
+                        required
+                    />
+                    <button type="submit" className="user-profile-button" disabled={loading}>
+                        {loading ? 'Carregando...' : 'Atualizar'}
+                    </button>
+                </form>
+            </div>
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
         </div>
     );
 }

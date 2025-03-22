@@ -16,10 +16,44 @@ const Livro = () => {
     const isbnInputRef = useRef(null);
     const navigate = useNavigate();
 
+<<<<<<< Updated upstream
     useEffect(() => {
         fetchLivros();
         fetchEditoras();
     }, [page, filters, limit]);
+=======
+<<<<<<< Updated upstream
+    useEffect(() => {
+        fetchLivros();
+        fetchEditoras();
+    }, [page, filters, limit]);
+=======
+    const fetchLivros = useCallback(async () => {
+        console.log("Filtros aplicados:", filters);
+        if (filters.isDisponivel === "") {
+            // Remova o filtro de disponibilidade ao buscar os livros
+            const { isDisponivel, ...otherFilters } = filters;
+            const data = await getLivrosByFilters(otherFilters, page, limit);
+            setLivros(data.data);
+            setTotalRecords(data.total);
+        } else {
+            const data = await getLivrosByFilters(filters, page, limit);
+            setLivros(data.data);
+            setTotalRecords(data.total);
+        }
+    }, [filters, page, limit, setTotalRecords]);
+
+    const fetchEditoras = async () => {
+        const data = await getEditoras(1, 999);
+        setEditoras(data.data);
+    };
+
+    useEffect(() => {
+        fetchLivros();
+        fetchEditoras();
+    }, [fetchLivros, page, filters, limit]);
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 
     useEffect(() => {
         if (isbnInputRef.current) {
@@ -51,6 +85,13 @@ const Livro = () => {
     const handleFilterChange = (e) => {
         const { name, value } = e.target;
         setFilters(prevFilters => ({ ...prevFilters, [name]: value }));
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+=======
+        
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
     };
 
     return (

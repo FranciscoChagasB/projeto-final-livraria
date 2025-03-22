@@ -25,11 +25,40 @@ const EditoraForm = () => {
     useEffect(() => {
         if (id) {
             setIsEditing(true);
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+=======
+            fetchEditoraData(id);
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
         }
         if (cnpjInputRef.current) {
             IMask(cnpjInputRef.current, { mask: "00.000.000/0000-00" });
         }
     }, [id]);
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+=======
+
+    const fetchEditoraData = async (editoraId) => {
+        try {
+            const data = await getEditoraById(editoraId);
+            if (data) {
+                setFormData({
+                    nome: data.nome || "",
+                    emailContato: data.emailContato || "",
+                    telefone: data.telefone || "",
+                    cnpj: data.cnpj || "",
+                });
+            }
+        } catch (error) {
+            console.error("Erro ao carregar editora:", error);
+        }
+    };
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 
     const handleChange = (e) => {
         const { name, value } = e.target;

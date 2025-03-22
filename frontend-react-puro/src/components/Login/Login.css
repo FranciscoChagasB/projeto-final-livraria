@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 90vh;
+    height: 100%;
     background-color: #f0fff0d9;
 }
 
@@ -98,5 +98,16 @@
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    
+    body {
+        height: 100%;
+    }
+    .login-container {
+
     }
 }
