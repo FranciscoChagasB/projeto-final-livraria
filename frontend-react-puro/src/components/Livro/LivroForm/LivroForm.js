@@ -18,7 +18,7 @@ const LivroForm = () => {
     const [editoras, setEditoras] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
-    const [successMessage, setSuccessMessage] = useState("");<<<<<<< Updated upstream
+    const [successMessage, setSuccessMessage] = useState("");
 
     const isbnInputRef = useRef(null);
     const navigate = useNavigate();

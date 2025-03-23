@@ -13,7 +13,6 @@ import EditoraForm from './components/Editora/EditoraForm/EditoraForm.js';
 import PageNotFound from './components/NotFound/NotFound.js';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
-
 function HeaderWrapper() {
   const location = useLocation();
   

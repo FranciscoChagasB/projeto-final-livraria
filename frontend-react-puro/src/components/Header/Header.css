@@ -1,22 +1,6 @@
-<<<<<<< Updated upstream
 .header-container {
     background-color: #2e8b57;
     padding: 10px 20px;
-=======
-<<<<<<< Updated upstream
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-
-.header-container {
-    background-color: #314c53;
-    padding: 10px 20px;
-=======
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
-
-.header-container {
-    background-color: #314c53;
->>>>>>> Stashed changes
->>>>>>> Stashed changes
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -28,7 +12,6 @@
     z-index: 1000;
 }
 
-<<<<<<< Updated upstream
 .nav-content {
     display: flex;
     justify-content: space-around;
@@ -45,14 +28,8 @@
     font-weight: bold;
     padding: 10px;
     cursor: pointer;
-<<<<<<< Updated upstream
-}
-
-/* Navbar */
-=======
 }
 /* Navbar */
-=======
 .logo h1 {
     color: #ffffff;
     font-size: 22px;
@@ -76,8 +53,6 @@
     display: flex;
 }
 
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 .nav ul {
     list-style: none;
     padding: 0;
@@ -111,29 +86,17 @@
     cursor: pointer;
 }
 
-<<<<<<< Updated upstream
-.profileButton:hover {
-    opacity: 0.8;
-=======
 .hamburger-menu div {
     width: 25px;
     height: 1.5px;
     background-color: white;
     margin: 5px 0;
->>>>>>> Stashed changes
 }
 
 /* Estilos do menu mobile */
 .mobile-nav {
     display: none;
     position: absolute;
-<<<<<<< Updated upstream
-    top: 40px;
-    right: 0;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-=======
     top: 100%;
     left: 0;
     width: 70%;
@@ -152,7 +115,6 @@
     list-style: none;
     padding: 0;
     margin: 0;
->>>>>>> Stashed changes
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -168,40 +130,14 @@
     font-weight: 400;
 }
 
->>>>>>> Stashed changes
 .profile-container {
     display: flex;
     align-items: center;
     transition: all 0.2s ease-out;
 }
 
-<<<<<<< Updated upstream
-.profileButton {
-    background-color: transparent;
-    color: white;
-    border: none;
-    font-size: 22px;
-    cursor: pointer;
-}
-
-.profileButton{
-    margin-top: 12px;
-}
-.profileButton:hover {
-    opacity: 0.8;
-}
-
-/* Dropdown do perfil */
-.dropdown-menu {
-    position: absolute;
-    top: 40px;
-    right: 0;
-    background-color: rgb(255, 255, 255);
-    border-radius: 10px;
-=======
 .profile-container.active {
     background-color: #213635;
->>>>>>> Stashed changes
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -226,8 +162,6 @@
     font-weight: bold;
 }
 
-
-
 .dropdown-menu button {
     display: block;
     text-decoration: none;
@@ -240,45 +174,4 @@
 .dropdown-menu button:hover {
     background-color: #f0fff0;
     border-radius: 5px;
-<<<<<<< Updated upstream
 }
-=======
-}
-=======
-}
-
-.dropdown-menu button {
-    background: none;
-    border: none;
-    color: rgb(185, 5, 5);
-    font-size: 16px;
-    cursor: pointer;
-}
-
-/* Esconde a navegação normal em telas pequenas */
-@media screen and (max-width: 768px) {
-    
-    .profileButton img{
-        width: 35px;
-        height: 35px;
-    }
-    
-    .header-container {
-        height: 70px;
-    }
-
-    .logo h1 {
-        font-size: 25px;
-        font-weight: 600;
-    }
-
-    .nav {
-        display: none;
-    }
-
-    .hamburger-menu {
-        display: flex;
-    }
-}
->>>>>>> Stashed changes
->>>>>>> Stashed changes

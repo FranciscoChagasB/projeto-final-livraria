@@ -40,9 +40,12 @@ const Header = () => {
 
     return (
         <header className="header-container">
-            <div class="logo">
-                <h1>Sistema de livraria</h1>
+            {/* Logo */}
+            <div className="logo">
+                <h1>Sistema de Livraria</h1>
             </div>
+
+            {/* Navbar padrão (desktop) */}
             <div className="nav-content">
                 <nav className="nav">
                     <ul>
@@ -61,7 +64,6 @@ const Header = () => {
                             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                         >
                             <img src={perfilIcon} alt="Ícone" height={40} />
-
                         </button>
                         {isDropdownOpen && (
                             <div className="dropdown-menu">
@@ -80,33 +82,18 @@ const Header = () => {
                 <div></div>
             </div>
 
-            {/* Logo */}
-            <div className="logo">
-                <h1>Sistema de Livraria</h1>
-            </div>
-
-            {/* Navbar padrão (desktop) */}
-            <nav className="nav">
-                <ul>
-                    <li><Link to="/home">Home</Link></li>
-                    <li><Link to="/editora">Editoras</Link></li>
-                    <li><Link to="/livro">Livros</Link></li>
-                    <li><Link to="/teste3">Empréstimo</Link></li>
-                    <li><Link to="/teste4">Cadastro Aluno</Link></li>
-                </ul>
-            </nav>
-
             {/* Navbar mobile (hambúrguer) */}
             <nav className={`mobile-nav ${isMobileMenuOpen ? 'open' : ''}`}>
                 <ul>
                     <li><Link to="/home" onClick={() => setIsMobileMenuOpen(false)}>Home</Link></li>
                     <li><Link to="/editora" onClick={() => setIsMobileMenuOpen(false)}>Editoras</Link></li>
                     <li><Link to="/livro" onClick={() => setIsMobileMenuOpen(false)}>Livros</Link></li>
-                    <li><Link to="/teste3" onClick={() => setIsMobileMenuOpen(false)}>Empréstimo</Link></li>
-                    <li><Link to="/teste4" onClick={() => setIsMobileMenuOpen(false)}>Cadastro Aluno</Link></li>
+                    <li><Link to="/teste3" onClick={() => setIsMobileMenuOpen(false)}>Emprestimo</Link></li>
+                    <li><Link to="/teste4" onClick={() => setIsMobileMenuOpen(false)}>Cadastro aluno</Link></li>
                 </ul>
             </nav>
 
+            {/* Dropdown para perfil (só quando logado) */}
             {isLoggedIn && (
                 <div className={`profile-container ${isDropdownOpen ? "active" : ""}`} ref={dropdownRef}>
                     <button
