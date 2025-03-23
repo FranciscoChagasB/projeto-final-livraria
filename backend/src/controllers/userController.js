@@ -63,7 +63,7 @@ async function loginUser(req, res) {
         if (!isPasswordValid) {
             return res.status(400).json({ message: 'Senha inválida' });
         }
-
+        console.log("Chave secreta:", process.env.SECRET_KEY);
         const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, { expiresIn: '1h' });
         return res.json({ token });
     } catch (error) {
