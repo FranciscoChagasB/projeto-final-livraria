@@ -56,23 +56,6 @@ const Header = () => {
                         <li><Link to="/teste4">Cadastro aluno</Link></li>
                     </ul>
                 </nav>
-
-                {isLoggedIn && (
-                    <div className="profile-container" ref={dropdownRef}>
-                        <button
-                            className="profileButton"
-                            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                        >
-                            <img src={perfilIcon} alt="Ícone" height={40} />
-                        </button>
-                        {isDropdownOpen && (
-                            <div className="dropdown-menu">
-                                <Link to="/profile" className="dropdown-link">Ver Perfil</Link>
-                                <button onClick={handleLogout}>Logout</button>
-                            </div>
-                        )}
-                    </div>
-                )}
             </div>
 
             {/* Menu Hamburguer (somente mobile) */}

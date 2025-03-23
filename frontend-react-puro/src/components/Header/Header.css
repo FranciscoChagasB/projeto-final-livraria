@@ -1,9 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 .header-container {
     background-color: #2e8b57;
-    padding: 10px 20px;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     width: 100%;
     position: relative;
     top: 0;
@@ -12,45 +13,16 @@
     z-index: 1000;
 }
 
-.nav-content {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.home-link {
+.header-container .logo {
     color: white;
-    text-decoration: none;
-    font-family: 'Georgia', serif;
-    font-weight: bold;
-    padding: 10px;
-    cursor: pointer;
-}
-/* Navbar */
-.logo h1 {
-    color: #ffffff;
-    font-size: 22px;
+    font-size: 12px;
+    margin-left: 20px;
     font-family: "Poppins", sans-serif;
-    font-weight: 400;
 }
-
-.profile-container button {
-    background: none;
-    border: none;
-}
-
 
 .nav-content {
     display: flex;
     align-items: center;
-}
-
-/* Navbar padrão (desktop) */
-.nav {
-    display: flex;
 }
 
 .nav ul {
@@ -59,10 +31,6 @@
     margin: 0;
     display: flex;
     gap: 15px;
-}
-
-.nav ul li {
-    margin: 10px;
 }
 
 .nav ul li a {
@@ -76,10 +44,63 @@
 .nav ul li a:hover {
     background-color: #010300;
     border-radius: 5px;
-    transition: 0.9s;
 }
 
-/* Ícone do menu hambúrguer (somente mobile) */
+.profile-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    
+}
+
+.profile-container button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.profile-container .dropdown-menu {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: #010300;
+    display: none;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 20px;
+    z-index: 1000;
+    min-width: 120px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    gap: 5px;
+}
+
+.profile-container.active .dropdown-menu {
+    display: flex;
+}
+
+.dropdown-menu a, .dropdown-menu button {
+    color: white;
+    text-decoration: none;
+    background-color: #2e8b57;
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 8px;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-menu button:hover {
+    background-color: #11301e;
+}
+
+.dropdown-menu a:hover {
+    background-color: #11301e;
+}
+
+
+/* Navbar mobile */
 .hamburger-menu {
     display: none;
     flex-direction: column;
@@ -128,50 +149,4 @@
     margin-top: 60px;
     font-family: "Poppins", sans-serif;
     font-weight: 400;
-}
-
-.profile-container {
-    display: flex;
-    align-items: center;
-    transition: all 0.2s ease-out;
-}
-
-.profile-container.active {
-    background-color: #213635;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 70px;
-    margin-left: 130px;
-    padding: 10px;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-}
-
-.dropdown-menu {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 10px;
-}
-
-.dropdown-menu a {
-    color: white;
-    text-decoration: none;
-    color: #2e8b57;
-    font-weight: bold;
-}
-
-.dropdown-menu button {
-    display: block;
-    text-decoration: none;
-    color: #273523;
-    background-color: #ffffff;
-    font-weight: bold;
-    margin-top: 10px;
-}
-
-.dropdown-menu button:hover {
-    background-color: #f0fff0;
-    border-radius: 5px;
 }

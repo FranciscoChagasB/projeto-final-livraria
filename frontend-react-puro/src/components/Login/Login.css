@@ -5,6 +5,7 @@
     justify-content: center;
     height: 100%;
     background-color: #f0fff0d9;
+    padding: 20px;
 }
 
 .login-container h2 {
@@ -12,6 +13,7 @@
     font-size: 28px;
     font-weight: bold;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 /* Estilização do formulário */
@@ -63,6 +65,7 @@
     margin-top: 15px;
     color: #006400;
     font-size: 14px;
+    text-align: center;
 }
 
 .login-container p a {
@@ -101,13 +104,31 @@
     }
 }
 
-
 @media screen and (max-width: 768px) {
-    
-    body {
+    .login-container {
+        padding: 15px;
         height: 100%;
     }
-    .login-container {
 
+    .login-form {
+        width: 90%;
+        padding: 35px;
+        height: 300px;
+        gap: 20px;
+    }
+
+    .login-container h2 {
+        font-size: 26px;
+    }
+
+    .login-form input {
+        font-size: 16px;
+        padding: 12px;
+        height: 30px;
+    }
+
+    .login-form button {
+        font-size: 16px;
+        padding: 12px;
     }
 }
