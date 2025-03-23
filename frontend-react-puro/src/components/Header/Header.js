@@ -1,11 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import perfilIcon from "../../images/user.png"; 
+import perfilIcon from "../../images/user.png";
 import "./Header.css";
 
 const Header = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const navigate = useNavigate();
     const dropdownRef = useRef(null);
 
@@ -40,7 +41,7 @@ const Header = () => {
     return (
         <header className="header-container">
             <div class="logo">
-                <h1>Sistem de livraria</h1>
+                <h1>Sistema de livraria</h1>
             </div>
             <div className="nav-content">
                 <nav className="nav">
@@ -59,7 +60,7 @@ const Header = () => {
                             className="profileButton"
                             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                         >
-                           <img src={perfilIcon} alt="Ícone"  height={40}/>
+                            <img src={perfilIcon} alt="Ícone" height={40} />
 
                         </button>
                         {isDropdownOpen && (
@@ -71,6 +72,57 @@ const Header = () => {
                     </div>
                 )}
             </div>
+
+            {/* Menu Hamburguer (somente mobile) */}
+            <div className="hamburger-menu" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+
+            {/* Logo */}
+            <div className="logo">
+                <h1>Sistema de Livraria</h1>
+            </div>
+
+            {/* Navbar padrão (desktop) */}
+            <nav className="nav">
+                <ul>
+                    <li><Link to="/home">Home</Link></li>
+                    <li><Link to="/editora">Editoras</Link></li>
+                    <li><Link to="/livro">Livros</Link></li>
+                    <li><Link to="/teste3">Empréstimo</Link></li>
+                    <li><Link to="/teste4">Cadastro Aluno</Link></li>
+                </ul>
+            </nav>
+
+            {/* Navbar mobile (hambúrguer) */}
+            <nav className={`mobile-nav ${isMobileMenuOpen ? 'open' : ''}`}>
+                <ul>
+                    <li><Link to="/home" onClick={() => setIsMobileMenuOpen(false)}>Home</Link></li>
+                    <li><Link to="/editora" onClick={() => setIsMobileMenuOpen(false)}>Editoras</Link></li>
+                    <li><Link to="/livro" onClick={() => setIsMobileMenuOpen(false)}>Livros</Link></li>
+                    <li><Link to="/teste3" onClick={() => setIsMobileMenuOpen(false)}>Empréstimo</Link></li>
+                    <li><Link to="/teste4" onClick={() => setIsMobileMenuOpen(false)}>Cadastro Aluno</Link></li>
+                </ul>
+            </nav>
+
+            {isLoggedIn && (
+                <div className={`profile-container ${isDropdownOpen ? "active" : ""}`} ref={dropdownRef}>
+                    <button
+                        className="profileButton"
+                        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                    >
+                        <img src={perfilIcon} alt="Ícone" height={40} />
+                    </button>
+                    {isDropdownOpen && (
+                        <div className="dropdown-menu">
+                            <Link to="/profile" className="dropdown-link">Ver Perfil</Link>
+                            <button onClick={handleLogout}>Logout</button>
+                        </div>
+                    )}
+                </div>
+            )}
         </header>
     );
 };
