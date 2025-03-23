@@ -1,48 +1,27 @@
-import { useState, useEffect, useRef } from "react";
-import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import IMask from "imask";
 import "./EditoraForm.css";
 import { Helmet } from "react-helmet";
-import { createEditora, updateEditora } from "../../../services/editorasService";
+import { createEditora, updateEditora, getEditoraById } from "../../../services/editorasService";
 
 const EditoraForm = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const location = useLocation();
-    const queryParams = new URLSearchParams(location.search);
-
     const [formData, setFormData] = useState({
-        nome: queryParams.get("nome") || "",
-        emailContato: queryParams.get("emailContato") || "",
-        telefone: queryParams.get("telefone") || "",
-        cnpj: queryParams.get("cnpj") || "",
+        nome: "",
+        emailContato: "",
+        telefone: "",
+        cnpj: "",
     });
 
     const [isEditing, setIsEditing] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
+    const [successMessage, setSuccessMessage] = useState("");
     const cnpjInputRef = useRef(null);
-
-    useEffect(() => {
-        if (id) {
-            setIsEditing(true);
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
-            fetchEditoraData(id);
->>>>>>> Stashed changes
->>>>>>> Stashed changes
-        }
-        if (cnpjInputRef.current) {
-            IMask(cnpjInputRef.current, { mask: "00.000.000/0000-00" });
-        }
-    }, [id]);
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
-
-    const fetchEditoraData = async (editoraId) => {
+    
+    const fetchEditoraData = useCallback(async (editoraId) => {
         try {
             const data = await getEditoraById(editoraId);
             if (data) {
@@ -54,11 +33,20 @@ const EditoraForm = () => {
                 });
             }
         } catch (error) {
-            console.error("Erro ao carregar editora:", error);
+            setErrorMessage(error.response?.data?.message || "Erro ao carregar editora.");
+            clearMessages();
         }
-    };
->>>>>>> Stashed changes
->>>>>>> Stashed changes
+    }, []);
+
+    useEffect(() => {
+        if (id) {
+            setIsEditing(true);
+            fetchEditoraData(id);
+        }
+        if (cnpjInputRef.current) {
+            IMask(cnpjInputRef.current, { mask: "00.000.000/0000-00" });
+        }
+    }, [id, fetchEditoraData]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -72,15 +60,25 @@ const EditoraForm = () => {
         try {
             if (isEditing) {
                 await updateEditora(id, formData);
+                setSuccessMessage("Editora atualizada com sucesso!");
             } else {
                 await createEditora(formData);
+                setSuccessMessage("Editora cadastrada com sucesso!");
             }
-            navigate("/editora");
+            setTimeout(() => navigate("/editora"), 2000);
         } catch (error) {
-            console.error("Erro ao salvar editora:", error);
+            setErrorMessage(error.response?.data?.message || "Erro ao salvar editora.");
         } finally {
             setLoading(false);
+            clearMessages();
         }
+    };
+
+    const clearMessages = () => {
+        setTimeout(() => {
+            setErrorMessage("");
+            setSuccessMessage("");
+        }, 3000);
     };
 
     return (
@@ -89,6 +87,10 @@ const EditoraForm = () => {
                 <title>Sistema de Gerenciamento de Biblioteca</title>
             </Helmet>
             <h2 className="form-title">{isEditing ? "Editar Editora" : "Cadastrar Editora"}</h2>
+
+            {errorMessage && <p className="error-message">{errorMessage}</p>}
+            {successMessage && <p className="success-message">{successMessage}</p>}
+
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="nome">Nome</label>

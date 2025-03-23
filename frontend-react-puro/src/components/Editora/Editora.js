@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { getEditorasByFilters, deleteEditora } from "../../services/editorasService";
 import { Link } from "react-router-dom";
 import IMask from "imask";
@@ -11,12 +11,25 @@ const Editora = () => {
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(10);
     const [totalRecords, setTotalRecords] = useState(0);
+    const [errorMessage, setErrorMessage] = useState("");
+    const [successMessage, setSuccessMessage] = useState("");
 
     const cnpjInputRef = useRef(null);
 
+    const fetchEditoras = useCallback(async () => {
+        try {
+            const data = await getEditorasByFilters(filters, page, limit);
+            setEditoras(data.data);
+            setTotalRecords(data.total);
+        } catch (error) {
+            setErrorMessage(error.response?.data?.message || "Erro ao carregar editoras.");
+            clearMessages();
+        }
+    }, [filters, page, limit]);
+
     useEffect(() => {
         fetchEditoras();
-    }, [page, filters, limit]);
+    }, [fetchEditoras]);
 
     useEffect(() => {
         if (cnpjInputRef.current) {
@@ -24,15 +37,16 @@ const Editora = () => {
         }
     }, []);
 
-    const fetchEditoras = async () => {
-        const data = await getEditorasByFilters(filters, page, limit);
-        setEditoras(data.data);
-        setTotalRecords(data.total);
-    };
-
     const handleDelete = async (id) => {
-        await deleteEditora(id);
-        fetchEditoras();
+        try {
+            await deleteEditora(id);
+            setSuccessMessage("Editora excluída com sucesso!");
+            fetchEditoras();
+        } catch (error) {
+            setErrorMessage(error.response?.data?.message || "Erro ao excluir editora.");
+        } finally {
+            clearMessages();
+        }
     };
 
     const handleLimitChange = (e) => {
@@ -45,6 +59,13 @@ const Editora = () => {
         setFilters((prevFilters) => ({ ...prevFilters, [name]: value }));
     };
 
+    const clearMessages = () => {
+        setTimeout(() => {
+            setErrorMessage("");
+            setSuccessMessage("");
+        }, 3000);
+    };
+
     return (
         <div className="editora-container">
             <Helmet>
@@ -55,6 +76,9 @@ const Editora = () => {
             <Link to="/editoraform">
                 <button className="editora-btn-new">Novo Registro</button>
             </Link>
+
+            {errorMessage && <p className="error-message">{errorMessage}</p>} {/* Exibição de erros */}
+            {successMessage && <p className="success-message">{successMessage}</p>}
 
             <div className="editora-filter">
                 <span>Pesquisar</span>
@@ -82,7 +106,7 @@ const Editora = () => {
                                 <td>{editora.telefone || "N/A"}</td>
                                 <td>{editora.cnpj}</td>
                                 <td>
-                                    <Link to={`/editoraform?id=${editora.id}`}>
+                                    <Link to={`/editoraform/${editora.id}`}>
                                         <button className="editora-btn-edit">Editar</button>
                                     </Link>
                                     <button className="editora-btn-delete" onClick={() => handleDelete(editora.id)}>Excluir</button>
@@ -94,6 +118,7 @@ const Editora = () => {
             </div>
 
             <div className="editora-pagination">
+                <p>Total: {totalRecords}</p>
                 <label>
                     Registros por página:
                     <select value={limit} onChange={handleLimitChange}>

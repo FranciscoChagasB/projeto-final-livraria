@@ -23,6 +23,16 @@ export const getEditoras = async (page = 1, limit = 5) => {
     }
 };
 
+export const getEditoraById = async (id) => {
+    try {
+        const res = await axios.get(`${API_URL}/api/editoras/${id}`);
+        return res.data;
+    } catch (error) {
+        console.error("Erro ao buscar editora por ID", error);
+        return null;
+    }
+};
+
 export const createEditora = async (editoraData) => {
     try {
         await axios.post(`${API_URL}/api/editoras/create`, editoraData);

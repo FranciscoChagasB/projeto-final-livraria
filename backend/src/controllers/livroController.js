@@ -48,13 +48,14 @@ async function getAllLivros(req, res) {
 
 // Buscar livros por filtros com paginação
 async function getLivrosByFilters(req, res) {
-    const { titulo, isbn, isDisponivel, editoraId, page = 1, limit = 10 } = req.query;
+    const { titulo, isbn, isDisponivel, editoraId, genero, page = 1, limit = 10 } = req.query;
 
     const filters = {};
     if (titulo) filters.titulo = { contains: titulo, mode: 'insensitive' };
     if (isbn) filters.isbn = { contains: isbn, mode: 'insensitive' };
     if (isDisponivel !== undefined) filters.isDisponivel = isDisponivel === 'true';
     if (editoraId) filters.editoraId = parseInt(editoraId, 10);
+    if (genero) filters.genero = genero.toLowerCase();
 
     try {
         const livros = await prisma.livro.findMany({

@@ -1,12 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
 import perfilIcon from "../../images/user.png";
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 import "./Header.css";
 
 const Header = () => {
@@ -46,21 +40,17 @@ const Header = () => {
 
     return (
         <header className="header-container">
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
+            <div class="logo">
+                <h1>Sistema de livraria</h1>
+            </div>
             <div className="nav-content">
-                <Link to="/home" className="home-link">Home</Link>
-
                 <nav className="nav">
                     <ul>
+                        <li><Link to="/home">Home</Link></li>
                         <li><Link to="/editora">Editoras</Link></li>
                         <li><Link to="/livro">Livros</Link></li>
-                        <li><Link to="/teste3">Teste 3</Link></li>
-                        <li><Link to="/teste4">Teste 4</Link></li>
-                        <li><Link to="/teste5">Teste 5</Link></li>
-                        <li><Link to="/teste6">Teste 6</Link></li>
+                        <li><Link to="/teste3">Emprestimo</Link></li>
+                        <li><Link to="/teste4">Cadastro aluno</Link></li>
                     </ul>
                 </nav>
 
@@ -70,7 +60,8 @@ const Header = () => {
                             className="profileButton"
                             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                         >
-                            👤
+                            <img src={perfilIcon} alt="Ícone" height={40} />
+
                         </button>
                         {isDropdownOpen && (
                             <div className="dropdown-menu">
@@ -80,14 +71,13 @@ const Header = () => {
                         )}
                     </div>
                 )}
-=======
+            </div>
 
             {/* Menu Hamburguer (somente mobile) */}
             <div className="hamburger-menu" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
                 <div></div>
                 <div></div>
                 <div></div>
->>>>>>> Stashed changes
             </div>
 
             {/* Logo */}

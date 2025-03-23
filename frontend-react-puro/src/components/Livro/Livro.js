@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { getLivrosByFilters, deleteLivro } from "../../services/livrosService";
 import { getEditoras } from "../../services/editorasService";
 import { useNavigate } from "react-router-dom";
@@ -13,47 +13,42 @@ const Livro = () => {
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(10);
     const [totalRecords, setTotalRecords] = useState(0);
+    const [errorMessage, setErrorMessage] = useState("");
+    const [successMessage, setSuccessMessage] = useState("");
     const isbnInputRef = useRef(null);
     const navigate = useNavigate();
 
-<<<<<<< Updated upstream
-    useEffect(() => {
-        fetchLivros();
-        fetchEditoras();
-    }, [page, filters, limit]);
-=======
-<<<<<<< Updated upstream
-    useEffect(() => {
-        fetchLivros();
-        fetchEditoras();
-    }, [page, filters, limit]);
-=======
     const fetchLivros = useCallback(async () => {
-        console.log("Filtros aplicados:", filters);
-        if (filters.isDisponivel === "") {
-            // Remova o filtro de disponibilidade ao buscar os livros
-            const { isDisponivel, ...otherFilters } = filters;
-            const data = await getLivrosByFilters(otherFilters, page, limit);
+        try {
+            let data;
+            if (filters.isDisponivel === "") {
+                const { isDisponivel, ...otherFilters } = filters;
+                data = await getLivrosByFilters(otherFilters, page, limit);
+            } else {
+                data = await getLivrosByFilters(filters, page, limit);
+            }
             setLivros(data.data);
             setTotalRecords(data.total);
-        } else {
-            const data = await getLivrosByFilters(filters, page, limit);
-            setLivros(data.data);
-            setTotalRecords(data.total);
+        } catch (error) {
+            setErrorMessage("Erro ao carregar os livros.");
+            clearMessages();
         }
-    }, [filters, page, limit, setTotalRecords]);
+    }, [filters, page, limit]);
 
-    const fetchEditoras = async () => {
-        const data = await getEditoras(1, 999);
-        setEditoras(data.data);
-    };
+    const fetchEditoras = useCallback(async () => {
+        try {
+            const data = await getEditoras(1, 999);
+            setEditoras(data.data);
+        } catch (error) {
+            setErrorMessage("Erro ao carregar editoras.");
+            clearMessages();
+        }
+    }, []);
 
     useEffect(() => {
         fetchLivros();
         fetchEditoras();
-    }, [fetchLivros, page, filters, limit]);
->>>>>>> Stashed changes
->>>>>>> Stashed changes
+    }, [fetchLivros, fetchEditoras, page, filters, limit]);
 
     useEffect(() => {
         if (isbnInputRef.current) {
@@ -61,20 +56,16 @@ const Livro = () => {
         }
     }, []);
 
-    const fetchLivros = async () => {
-        const data = await getLivrosByFilters(filters, page, limit);
-        setLivros(data.data);
-        setTotalRecords(data.total);
-    };
-
-    const fetchEditoras = async () => {
-        const data = await getEditoras(1, 999);
-        setEditoras(data.data);
-    };
-
     const handleDelete = async (id) => {
-        await deleteLivro(id);
-        fetchLivros();
+        try {
+            await deleteLivro(id);
+            setSuccessMessage("Livro excluído com sucesso!");
+            fetchLivros();
+        } catch (error) {
+            setErrorMessage("Erro ao excluir livro.");
+        } finally {
+            clearMessages();
+        }
     };
 
     const handleLimitChange = (e) => {
@@ -85,19 +76,23 @@ const Livro = () => {
     const handleFilterChange = (e) => {
         const { name, value } = e.target;
         setFilters(prevFilters => ({ ...prevFilters, [name]: value }));
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
-        
->>>>>>> Stashed changes
->>>>>>> Stashed changes
+
+    };
+
+    const clearMessages = () => {
+        setTimeout(() => {
+            setErrorMessage("");
+            setSuccessMessage("");
+        }, 3000);
     };
 
     return (
         <div className="livro-container">
             <h2 className="livro-title">Relação de Livros</h2>
             <button className="livro-btn-new" onClick={() => navigate("/livrosform")}>Novo Registro</button>
+
+            {errorMessage && <p className="error-message">{errorMessage}</p>}
+            {successMessage && <p className="success-message">{successMessage}</p>}
 
             <div className="livro-filter">
                 <span>Pesquisar</span>
@@ -130,6 +125,7 @@ const Livro = () => {
                             <th>ISBN</th>
                             <th>Disponível</th>
                             <th>Editora</th>
+                            <th>Gênero</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
@@ -140,6 +136,7 @@ const Livro = () => {
                                 <td>{livro.isbn}</td>
                                 <td>{livro.isDisponivel ? "Sim" : "Não"}</td>
                                 <td>{livro.editora.nome}</td>
+                                <td>{livro.genero ? livro.genero.charAt(0).toUpperCase() + livro.genero.slice(1) : "Não informado"}</td>
                                 <td>
                                     <button className="livro-btn-edit" onClick={() => navigate("/livrosform", { state: livro })}>Editar</button>
                                     <button className="livro-btn-delete" onClick={() => handleDelete(livro.id)}>Excluir</button>
@@ -151,6 +148,7 @@ const Livro = () => {
             </div>
 
             <div className="livro-pagination">
+                <p>Total: {totalRecords}</p>
                 <label>
                     Registros por página:
                     <select value={limit} onChange={handleLimitChange}>

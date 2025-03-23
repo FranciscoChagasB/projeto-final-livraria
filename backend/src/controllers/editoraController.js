@@ -73,7 +73,9 @@ async function getEditoraById(req, res) {
     const { id } = req.params;
 
     try {
-        const editora = await prisma.editora.findUnique({ where: { id } });
+        const editora = await prisma.editora.findUnique({ 
+            where: { id: parseInt(id, 10) } 
+        });
 
         if (!editora) {
             return res.status(404).json({ message: 'Editora não encontrada' });

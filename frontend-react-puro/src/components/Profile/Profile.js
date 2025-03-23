@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { getProfile, updateProfile } from '../../services/userService';
 import "./Profile.css";
 
 const Profile = () => {
-    const [user, setUser] = useState(null);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [cpf, setCpf] = useState('');
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const navigate = useNavigate();
+    const [successMessage, setSuccessMessage] = useState(null);
 
     useEffect(() => {
         const fetchProfile = async () => {
@@ -19,40 +17,40 @@ const Profile = () => {
                 console.log('Perfil retornado:', profile);  // Logar a resposta
                 if (!profile) throw new Error("Perfil não encontrado");
 
-                setUser(profile);
                 setName(profile.name || '');
                 setEmail(profile.email || '');
                 setCpf(profile.cpf || '');
             } catch (error) {
                 setError('Erro ao carregar perfil');
-                setTimeout(() => navigate('/login'), 2000);
             } finally {
                 setLoading(false);
             }
         };
         fetchProfile();
-    }, [navigate]);
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
         setError(null);
+        setSuccessMessage(null);
+        
         try {
             await updateProfile(name, cpf, email);
-            alert('Perfil atualizado com sucesso');
+            setSuccessMessage('Perfil atualizado com sucesso');
         } catch (error) {
             setError('Erro ao atualizar perfil');
         } finally {
             setLoading(false);
+            setTimeout(() => {
+                setError(null);
+                setSuccessMessage(null);
+            }, 3000);
         }
     };
 
     if (loading) return (
         <div className="loading-message">Carregando...</div>
-    );
-
-    if (error) return (
-        <div className="error-message">{error}</div>
     );
 
     return (

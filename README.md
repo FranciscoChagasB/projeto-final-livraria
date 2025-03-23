@@ -1,14 +1,102 @@
-# Projeto Final Livraria
+# ✨ Projeto Final Capacita - Sistema de Biblioteca ✨
 
-Este é um sistema de gestão de livros para uma livraria, com backend em Node.js (Express), Prisma e PostgreSQL, e frontend em React com Next.js.
+![GitHub repo size](https://img.shields.io/github/repo-size/FranciscoChagasB/projeto-final-livraria)
+![GitHub stars](https://img.shields.io/github/stars/FranciscoChagasB/projeto-final-livraria)
+![GitHub license](https://img.shields.io/github/license/FranciscoChagasB/projeto-final-livraria)
 
-## Tecnologias
+Um sistema de biblioteca completo, desenvolvido com **Node.js**, **Express**, **Prisma** e **JWT** no backend e **React**, **React Router DOM**, **Axios** e **iMask** no frontend. O sistema permite gerenciar usuários, editoras, livros, alunos e empréstimos.
 
-### Backend
-- **Node.js** com **Express**: Framework para construção do servidor.
-- **Prisma**: ORM para comunicação com o banco de dados PostgreSQL.
-- **PostgreSQL**: Banco de dados relacional.
+## 📚 Tecnologias Utilizadas
 
-### Frontend
-- **React**: Biblioteca para construção de interfaces de usuário.
-- **Next.js**: Framework React para desenvolvimento fullstack, com rotas e SSR (Server-Side Rendering).
+### Backend:
+- **Node.js** - Ambiente de execução JavaScript
+- **Express** - Framework para criação de API REST
+- **Prisma** - ORM para comunicação com o banco de dados
+- **JWT (JSON Web Token)** - Autenticação segura de usuários
+- **Body-Parser** - Processamento de requisições JSON
+
+### Frontend:
+- **React** - Biblioteca para criação de interfaces
+- **React Router DOM** - Gerenciamento de rotas no React
+- **Axios** - Requisições HTTP assíncronas
+- **iMask** - Máscara para campos de entrada
+
+## 🛠️ Instalação e Configuração
+
+### Requisitos:
+- **Node.js** instalado (versão LTS recomendada)
+- **Banco de Dados PostgreSQL** configurado
+- **Gerenciador de pacotes npm ou yarn**
+
+### Clonando o Repositório:
+```sh
+ git clone https://github.com/FranciscoChagasB/projeto-final-livraria.git
+ cd projeto-final-livraria
+```
+
+### Configuração do Backend
+1. Navegue até a pasta do backend:
+```sh
+ cd backend
+```
+2. Instale as dependências:
+```sh
+ npm install
+```
+3. Configure as variáveis de ambiente no arquivo `.env`:
+```env
+ DATABASE_URL="sua_url_do_banco"
+ JWT_SECRET="seu_segredo_jwt"
+```
+4. Execute as migrações do Prisma:
+```sh
+ npx prisma migrate dev
+```
+5. Inicie o servidor backend:
+```sh
+ npm start || npm run dev
+```
+O backend estará rodando em `http://localhost:8090`.
+
+### Configuração do Frontend
+1. Navegue até a pasta do frontend:
+```sh
+ cd frontend
+```
+2. Instale as dependências:
+```sh
+ npm install
+```
+3. Inicie o frontend:
+```sh
+ npm start
+```
+O frontend estará rodando em `http://localhost:3000`.
+
+## 🛠️ Endpoints da API
+
+### CRUDs Implementados:
+| Rota               | Método | Descrição               |
+|--------------------|--------|-------------------------|
+| `/api/users`       | CRUD   | Gerenciamento de usuários |
+| `/api/editoras`    | CRUD   | Gerenciamento de editoras |
+| `/api/livros`      | CRUD   | Gerenciamento de livros |
+| `/api/alunos`      | CRUD   | Gerenciamento de alunos |
+| `/api/emprestimos` | CRUD   | Gerenciamento de empréstimos |
+
+## 🔧 Funcionalidades
+- ✅ Cadastro, edição e remoção de usuários
+- ✅ Gestão de editoras e livros
+- ✅ Controle de empréstimos e devoluções
+- ✅ Autenticação segura com JWT
+- ✅ Interface moderna e responsiva
+
+## 🏢 Licença
+Este projeto está licenciado sob a [MIT License](LICENSE).
+
+---
+Desenvolvido por:
+Francisco das Chagas(https://github.com/FranciscoChagasB)🚀
+Lucas Davi(https://github.com/davilucasx) 🚀
+Dervando Gomes(github não informado) 🚀
+

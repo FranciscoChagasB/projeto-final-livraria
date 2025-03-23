@@ -1,49 +1,46 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import IMask from "imask";
 import { GenerosEnum } from "../../../enum/GeneroEnum";
+import { createLivro, updateLivro } from "../../../services/livrosService";
+import { getEditoras } from "../../../services/editorasService";
 
 const LivroForm = () => {
     const [formData, setFormData] = useState({
         titulo: "",
         autor: "",
         isbn: "",
-        editora: "",
-        anoPublicacao: "",
+        editoraId: "",
+        ano: "",
         genero: ""
     });
 
+    const [editoras, setEditoras] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
-<<<<<<< Updated upstream
+    const [errorMessage, setErrorMessage] = useState("");
+    const [successMessage, setSuccessMessage] = useState("");<<<<<<< Updated upstream
 
     const isbnInputRef = useRef(null);
+    const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
-        // Aqui, você pode colocar um código para verificar se está editando
-        if (window.location.search.includes("id=")) {
-=======
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
-    const isbnInputRef = useRef(null);
-
-    useEffect(() => {
-<<<<<<< Updated upstream
-        // Aqui, você pode colocar um código para verificar se está editando
-        if (window.location.search.includes("id=")) {
-=======
         const fetchEditoras = async () => {
-            const data = await getEditoras(1, 999);
-            setEditoras(data.data);
+            try {
+                const data = await getEditoras(1, 999);
+                setEditoras(data.data);
+            } catch (error) {
+                setErrorMessage("Erro ao carregar editoras.");
+                clearMessages();
+            }
         };
 
         fetchEditoras();
 
         // Verifica se está editando
         if (location.state) {
->>>>>>> Stashed changes
->>>>>>> Stashed changes
             setIsEditing(true);
+            setFormData(location.state);
         }
 
         if (isbnInputRef.current) {
@@ -51,57 +48,59 @@ const LivroForm = () => {
                 mask: "000-0-00-000000-0", // Máscara para ISBN
             });
         }
-    }, []);
+    }, [location.state]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+        setFormData({
+            ...formData,
+            [name]: name === "editoraId" || name === "ano" ? Number(value) : value
+        });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-        if (isEditing) {
-            console.log("Livro atualizado:", formData);
-        } else {
-            console.log("Livro cadastrado:", formData);
-<<<<<<< Updated upstream
-        }
-=======
-        }
-=======
 
         const { titulo, isbn, ano, genero, editoraId } = formData;
 
         console.log("FormData enviado: ", formData);
         
         if (!titulo || !isbn || !ano || !genero || !editoraId) {
-            alert("Todos os campos obrigatórios devem ser preenchidos.");
+            setErrorMessage("Todos os campos obrigatórios devem ser preenchidos.");
+            clearMessages();
             return;
         }
 
         try {
             if (isEditing) {
                 await updateLivro(formData.id, formData);
-                alert("Livro atualizado com sucesso!");
+                setSuccessMessage("Livro atualizado com sucesso!");
             } else {
                 await createLivro(formData);
-                alert("Livro cadastrado com sucesso!");
+                setSuccessMessage("Livro cadastrado com sucesso!");
             }
-            navigate("/livro"); // Redireciona para a página de livros
+            clearMessages();
+            setTimeout(() => navigate("/livro"), 1000);
         } catch (error) {
-            alert("Erro ao salvar livro. Verifique os dados e tente novamente.");
+            setErrorMessage("Erro ao salvar livro. Verifique os dados e tente novamente.");
+            clearMessages();
         }
->>>>>>> Stashed changes
->>>>>>> Stashed changes
+    };
+
+    const clearMessages = () => {
+        setTimeout(() => {
+            setErrorMessage("");
+            setSuccessMessage("");
+        }, 3000);
     };
 
     return (
         <div className="form-container">
             <h2 className="form-title">{isEditing ? "Editar Livro" : "Cadastrar Livro"}</h2>
+
+            {errorMessage && <p className="error-message">{errorMessage}</p>}
+            {successMessage && <p className="success-message">{successMessage}</p>}
+
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="titulo">Título</label>
@@ -141,25 +140,30 @@ const LivroForm = () => {
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="editora">Editora</label>
-                    <input
-                        type="text"
-                        id="editora"
-                        name="editora"
-                        placeholder="Digite a editora do livro"
-                        value={formData.editora}
+                    <label htmlFor="editoraId">Editora</label>
+                    <select
+                        id="editoraId"
+                        name="editoraId"
+                        value={formData.editoraId}
                         onChange={handleChange}
-                    />
+                    >
+                        <option value="">Selecione uma editora</option>
+                        {editoras.map((editora) => (
+                            <option key={editora.id} value={editora.id}>
+                                {editora.nome}
+                            </option>
+                        ))}
+                    </select>
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="anoPublicacao">Ano de Publicação</label>
+                    <label htmlFor="ano">Ano de Publicação</label>
                     <input
                         type="number"
-                        id="anoPublicacao"
-                        name="anoPublicacao"
+                        id="ano"
+                        name="ano"
                         placeholder="Digite o ano de publicação"
-                        value={formData.anoPublicacao}
+                        value={formData.ano}
                         onChange={handleChange}
                     />
                 </div>
