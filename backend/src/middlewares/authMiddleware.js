@@ -1,22 +1,23 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config(); // Carregar variáveis de ambiente
 
-const authenticateToken = (req, res, next) => {
-    const token = req.headers['authorization']?.split(' ')[1]; // Assuming token is sent as Bearer token
+function authenticateToken(req, res, next) {
+    const token = req.header('Authorization')?.replace('Bearer ', '');
 
     if (!token) {
-        return res.status(401).json({ message: 'Token não encontrado' });
+        console.log('Token não fornecido');
+        return res.status(401).json({ message: 'Acesso não autorizado' });
     }
 
     jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
         if (err) {
-            return res.status(403).json({ message: 'Token inválido' });
+            console.error('Erro ao verificar token:', err);
+            return res.status(401).json({ message: 'Token inválido' });
         }
 
-        // Add userId to the request object
-        req.userId = decoded.userId; // Assuming the decoded token has a 'userId'
+        req.userId = decoded.userId;
         next();
     });
-};
+}
 
 module.exports = { authenticateToken };
