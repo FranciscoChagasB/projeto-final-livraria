@@ -40,24 +40,7 @@ const Header = () => {
 
     return (
         <header className="header-container">
-            {/* Logo */}
-            <div className="logo">
-                <h1>Sistema de Livraria</h1>
-            </div>
-
-            {/* Navbar padrão (desktop) */}
-            <div className="nav-content">
-                <nav className="nav">
-                    <ul>
-                        <li><Link to="/home">Home</Link></li>
-                        <li><Link to="/editora">Editoras</Link></li>
-                        <li><Link to="/livro">Livros</Link></li>
-                        <li><Link to="/teste3">Emprestimo</Link></li>
-                        <li><Link to="/teste4">Cadastro aluno</Link></li>
-                    </ul>
-                </nav>
-            </div>
-
+            
             {/* Menu Hamburguer (somente mobile) */}
             <div className="hamburger-menu" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
                 <div></div>
@@ -75,6 +58,24 @@ const Header = () => {
                     <li><Link to="/teste4" onClick={() => setIsMobileMenuOpen(false)}>Cadastro aluno</Link></li>
                 </ul>
             </nav>
+            
+            {/* Logo */}
+            <div className="logo">
+                <h1>Sistema de Livraria</h1>
+            </div>
+
+            {/* Navbar padrão (desktop) */}
+            <div className="nav-content">
+                <nav className="nav">
+                    <ul>
+                        <li><Link to="/home">Home</Link></li>
+                        <li><Link to="/editora">Editoras</Link></li>
+                        <li><Link to="/livro">Livros</Link></li>
+                        <li><Link to="/teste3">Emprestimo</Link></li>
+                        <li><Link to="/teste4">Cadastro aluno</Link></li>
+                    </ul>
+                </nav>
+            </div>
 
             {/* Dropdown para perfil (só quando logado) */}
             {isLoggedIn && (

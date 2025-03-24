@@ -48,9 +48,6 @@ const Home = () => {
                     ))}
                 </div>
             </div>
-            
-            {/* Link para perfil */}
-            <Link to="/profile" className="home-profile-link">Ver Perfil</Link>
         </div>
     );
 }
