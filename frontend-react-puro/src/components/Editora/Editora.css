@@ -33,6 +33,7 @@
 
 .editora-filter {
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
     margin-bottom: 20px;
     align-items: center;
@@ -43,7 +44,8 @@
     font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 4px;
-    width: 250px;
+    width: 100%;
+    max-width: 250px;
 }
 
 .editora-filter span {
@@ -63,6 +65,7 @@
 
 .editora-list {
     margin-top: 20px;
+    overflow-x: auto;
 }
 
 .editora-table {
@@ -115,7 +118,8 @@
 .editora-pagination {
     margin-top: 20px;
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 10px;
 }
 
@@ -160,50 +164,39 @@
     color: white;
 }
 
-/* Mensagem de erro */
-.error-message {
-    color: #d32f2f;
-    background-color: #fdecea;
-    border: 1px solid #d32f2f;
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
-    font-weight: bold;
-    margin: 10px 0;
-    opacity: 0;
-    animation: fadeIn 1s forwards;
-}
-
-/* Mensagem de sucesso */
-.success-message {
-    color: #2e7d32;
-    background-color: #e8f5e9;
-    border: 1px solid #2e7d32;
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
-    font-weight: bold;
-    margin: 10px 0;
-    opacity: 0;
-    animation: fadeIn 1s forwards;
-}
-
-/* Mensagem de carregamento */
-.loading-message {
-    color: #1976d2;
-    font-size: 1.2em;
-    font-weight: bold;
-    margin: 10px 0;
-    opacity: 0;
-    animation: fadeIn 1s forwards;
-}
-
-/* Animação fade-in */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
+/* Responsividade */
+@media (max-width: 768px) {
+    .editora-container {
+        padding: 15px;
+        margin: 15px;
+        margin-top: 50px;
+        
     }
-    to {
-        opacity: 1;
+    
+    .editora-title {
+        font-size: 1.5rem;
+    }
+
+    .editora-btn-new {
+        width: 100%;
+        float: none;
+        text-align: center;
+    }
+    
+    .editora-filter {
+        flex-direction: column;
+    }
+
+    .editora-filter input,
+    .editora-filter button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .editora-table th,
+    .editora-table td {
+        font-size: 0.9rem;
+        padding: 8px;
     }
 }

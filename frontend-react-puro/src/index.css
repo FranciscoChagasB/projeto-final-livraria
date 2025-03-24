@@ -6,7 +6,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f2f2f2;
+  background-color: var(--background-color);
+  overflow-x: hidden;
+  width: 100%;
 }
 
 code {

@@ -218,7 +218,6 @@
     /* Ajustes no cabeçalho */
     .header-container {
         height: 80px;
-        padding: 10px;
     }
 
     .header-container .logo {
@@ -233,6 +232,7 @@
     /* Exibição do Hamburger Menu */
     .hamburger-menu {
         display: flex;
+        margin-left: 10px;
     }
 
     .nav ul {

@@ -4,14 +4,14 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color: #002a30;
+    background-color: var(--background-color);
 }
 
 .login-container h2 {
-    color: #2e8b57;
+    color: var(--title-color-login);
     font-size: 28px;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     text-align: center;
 }
 
@@ -20,7 +20,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: white;
+    background: var(--div-form-login);
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
@@ -112,7 +112,7 @@
 
     .login-container h2:nth-child(1){
         font-size: 28px;
-        margin-top: -40%;
+        margin-top: -30%;
         
     }
 
