@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.header-container {
+    background-color: #002a30;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 60px;
+    z-index: 1000;
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo h1 {
+    color: #ffffff;
+    font-size: 22px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+}
+
+/* Navbar */
+.nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 15px;
+}
+
+.nav ul li {
+    margin: 10px;
+}
+
+.nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px;
+    transition: all 0.3s ease;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    display: inline-block; /* Garante que o efeito seja aplicado corretamente */
+}
+
+.nav ul li:hover > a {
+    background-color: #a6dbc8bd;
+    color: #f0f0f0fb;
+    font-size: 20px;
+    border-radius: 5px;
+    transition: 0.2s;
+}
+
+.profile-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.profileButton {
+    background-color: transparent;
+    color: white;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    margin-top: 12px;
+    margin-right: 120px;
+}
+
+.profileButton:hover {
+    opacity: 0.8;
+}
+
+/* Dropdown do perfil */
+.dropdown-menu {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 140px;
+    padding: 8px 0;
+    align-items: center;
+    margin-right: 120px;
+    margin-top: 15px;
+}
+
+.dropdown-menu a {
+    display: block;
+    font-size: 20px;
+    text-decoration: none;
+    color: #273523;
+    font-weight: bold;
+}
+
+.dropdown-menu button {
+    display: block;
+    text-decoration: none;
+    color: #273523;
+    background-color: #ffffff;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Ícone do menu hambúrguer (somente mobile) */
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger-menu div {
+    width: 25px;
+    height: 1.5px;
+    background-color: white;
+    margin: 5px 0;
+}
+
+/* Estilos do menu mobile */
+.mobile-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 70%;
+    max-height: 50vh;
+    background-color: #314c53;
+    flex-direction: column;
+    padding: 20px 0;
+    border-bottom-right-radius: 8px;
+}
+
+.mobile-nav.open {
+    display: flex;
+}
+
+.mobile-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.mobile-nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 30px;
+    padding: 20px;
+    margin-top: 60px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+}

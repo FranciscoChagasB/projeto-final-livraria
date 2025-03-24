@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.user-profile-container {
+  width: 400px;
+  height: 400px;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.user-profile-container h1 {
+  font-family: "Inter", sans-serif;
+  font-weight: normal;
+  outline: none;
+}
+
+
+.user-profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  outline: none;
+}
+
+.user-profile-form label {
+  text-align: left;
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+
+}
+
+.user-profile-form input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.user-profile-button {
+  padding: 10px;
+  margin-top: 10px;
+  background: #314c53;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+}
+
+.user-profile-button:hover {
+  background-color: #348e91;
+}

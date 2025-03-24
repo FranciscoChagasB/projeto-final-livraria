@@ -1,0 +1,184 @@
+.home-page-container {
+    width: 100%;
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+}
+
+/* Título principal */
+.home-title {
+    color: #2e8b57;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+/* Barra de Pesquisa */
+.home-search {
+    width: 60%;
+    max-width: 400px;
+    padding: 10px;
+    border: 2px solid #2e8b57;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+/* Livros em Destaque */
+.home-featured {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 80%;
+    margin-bottom: 20px;
+}
+
+.home-featured h3 {
+    color: #2e8b57;
+    margin-bottom: 10px;
+}
+
+.home-featured ul {
+    list-style-type: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    
+}
+
+.home-featured li {
+    padding: 8px 0;
+    font-size: 18px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+}
+
+.home-featured li:last-child {
+    border-bottom: none;
+}
+
+.home-featured img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+/* Categorias Populares */
+.home-categories {
+    margin-bottom: 20px;
+}
+
+.home-categories h3 {
+    color: #2e8b57;
+    margin-bottom: 10px;
+}
+
+.categories-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.category {
+    background-color: #002a30;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.category:hover {
+    background-color: #006400;
+}
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+    .home-page-container {
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    .home-title {
+        font-size: 28px;
+        margin-top: 60px;
+    }
+
+    .home-search {
+        width: 80%;
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .home-featured {
+        width: 80%;
+    }
+
+    .home-featured h3 {
+        font-size: 20px;
+    }
+
+    .home-featured li {
+        font-size: 16px;
+    }
+
+    .home-categories {
+        width: 90%;
+        padding: 10px;
+    }
+
+    .categories-list {
+        flex-direction: column;
+        gap: 8px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .category {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .home-title {
+        font-size: 24px;
+        margin-top: 40px;
+    }
+
+    .home-search {
+        width: 90%;
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .home-featured {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .home-featured h3 {
+        font-size: 18px;
+    }
+
+    .home-featured li {
+        font-size: 14px;
+    }
+
+    .category {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+}

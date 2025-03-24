@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3000";
+const API_URL = "http://localhost:8090";
 
 export const getLivrosByFilters = async (filters, page = 1, limit = 5) => {
     try {
@@ -23,11 +23,22 @@ export const getLivros = async (page = 1, limit = 5) => {
     }
 };
 
+export const getLivroById = async (id) => {
+    try {
+        const res = await axios.get(`${API_URL}/api/livros/${id}`);
+        return res.data;
+    } catch (error) {
+        console.error("Erro ao buscar livro", error);
+        return null;
+    }
+};
+
 export const createLivro = async (livroData) => {
     try {
         await axios.post(`${API_URL}/api/livros/create`, livroData);
     } catch (error) {
-        console.error("Erro ao criar livro", error);
+        console.error("Erro ao criar livro:", error.response?.data || error.message);
+        throw error;
     }
 };
 

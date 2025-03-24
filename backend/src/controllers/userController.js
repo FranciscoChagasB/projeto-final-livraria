@@ -76,6 +76,11 @@ async function loginUser(req, res) {
 async function getUserData(req, res) {
     const userId = req.userId;
 
+    // Verificar se userId está presente
+    if (!userId) {
+        return res.status(400).json({ message: 'UserId não encontrado' });
+    }
+
     try {
         const user = await prismaClient.user.findUnique({
             where: { id: userId },

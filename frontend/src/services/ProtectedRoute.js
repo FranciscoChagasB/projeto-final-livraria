@@ -1,20 +1,33 @@
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
-// Proteger a página, redirecionando se o usuário não estiver logado
 const ProtectedRoute = ({ children }) => {
-  const router = useRouter();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Verificar se o usuário está logado
-    const token = localStorage.getItem('token');
-    if (!token) {
-      // Se não estiver logado, redireciona para a página de login
-      router.push('/login');
-    }
-  }, [router]);
+    const token = localStorage.getItem("token");
 
-  // Se o usuário estiver logado, renderiza o conteúdo da página
+    if (!token) {
+      navigate("/login");
+    }
+
+    try {
+      const decoded = jwtDecode(token);
+      const currentTime = Date.now() / 1000; // Converter para segundos
+
+      if (decoded.exp < currentTime) {
+        console.warn("Token expirado. Redirecionando para login.");
+        localStorage.removeItem("token");
+        navigate("/login");
+      }
+    } catch (error) {
+      console.error("Erro ao decodificar token:", error);
+      localStorage.removeItem("token");
+      navigate("/login");
+    }
+  }, [navigate]);
+
   return <>{children}</>;
 };
 

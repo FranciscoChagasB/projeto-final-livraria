@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3000";
+const API_URL = "http://localhost:8090";
 
 export const getEditorasByFilters = async (filters, page = 1, limit = 5) => {
     try {
@@ -20,6 +20,16 @@ export const getEditoras = async (page = 1, limit = 5) => {
     } catch (error) {
         console.error("Erro ao buscar editoras", error);
         return { data: [], total: 0 };
+    }
+};
+
+export const getEditoraById = async (id) => {
+    try {
+        const res = await axios.get(`${API_URL}/api/editoras/${id}`);
+        return res.data;
+    } catch (error) {
+        console.error("Erro ao buscar editora por ID", error);
+        return null;
     }
 };
 
