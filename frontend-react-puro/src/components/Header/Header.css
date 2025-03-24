@@ -33,18 +33,30 @@
     gap: 15px;
 }
 
+.nav ul li {
+    margin: 10px;
+    display: flex;
+    align-items: center;
+}
+
 .nav ul li a {
     color: white;
     text-decoration: none;
     font-size: 18px;
     padding: 10px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease; 
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    display: inline-block;
 }
 
 .nav ul li a:hover {
-    background-color: #010300;
+    background-color: #a6dbc8bd;
+    color: #f0f0f0fb;
     border-radius: 5px;
+    transform: scale(1.1);
 }
+
 
 .profile-container {
     position: relative;
@@ -99,6 +111,57 @@
     background-color: #11301e;
 }
 
+
+/* Navbar mobile */
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger-menu div {
+    width: 25px;
+    height: 1.5px;
+    background-color: white;
+    margin: 5px 0;
+}
+
+/* Estilos do menu mobile */
+.mobile-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 70%;
+    max-height: 50vh;
+    background-color: #314c53;
+    flex-direction: column;
+    padding: 20px 0;
+    border-bottom-right-radius: 8px;
+}
+
+.mobile-nav.open {
+    display: flex;
+}
+
+.mobile-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.mobile-nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 30px;
+    padding: 20px;
+    margin-top: 60px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+}
 
 /* Navbar mobile */
 .hamburger-menu {
