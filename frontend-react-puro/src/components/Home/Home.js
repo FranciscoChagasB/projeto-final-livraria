@@ -34,7 +34,7 @@ const Home = () => {
                 <h3>Livros em Destaque</h3>
                 <ul>
                     {featuredBooks.map(book => (
-                        <li key={book.id}>{book.title} - {book.author}</li>
+                        <li key={book.id}>{<img src='https://placehold.co/40x40'/>} {book.title} - {book.author}</li>
                     ))}
                 </ul>
             </div>

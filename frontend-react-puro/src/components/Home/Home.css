@@ -5,6 +5,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0 auto;
 }
 
 /* Título principal */
@@ -12,7 +13,6 @@
     color: #2e8b57;
     font-size: 32px;
     font-weight: bold;
-    margin-top: 110px;
 }
 
 /* Barra de Pesquisa */
@@ -33,7 +33,7 @@
     border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     width: 80%;
-    max-width: 500px;
+    max-width: 80%;
     margin-bottom: 20px;
 }
 
@@ -45,16 +45,31 @@
 .home-featured ul {
     list-style-type: none;
     padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    
 }
 
 .home-featured li {
     padding: 8px 0;
     font-size: 18px;
     border-bottom: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
 }
 
 .home-featured li:last-child {
     border-bottom: none;
+}
+
+.home-featured img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin: 0 auto;
+    margin-bottom: 20px;
 }
 
 /* Categorias Populares */
