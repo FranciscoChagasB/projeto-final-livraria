@@ -97,7 +97,7 @@ const Editora = () => {
                 <p>Total: {totalRecords}</p>
                 <label>
                     Registros por página:
-                    <select value={limit} onChange={handleLimitChange}>
+                    <select className="dropDown" value={limit} onChange={handleLimitChange}>
                         <option value="5">5</option>
                         <option value="10">10</option>
                         <option value="25">25</option>

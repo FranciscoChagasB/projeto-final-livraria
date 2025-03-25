@@ -77,96 +77,92 @@ const LivroForm = () => {
     };
 
     return (
-        <div className="form-container">
-            <h2 className="form-title">{isEditing ? "Editar Livro" : "Cadastrar Livro"}</h2>
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="titulo">Título</label>
-                    <input
-                        type="text"
-                        id="titulo"
-                        name="titulo"
-                        placeholder="Digite o título do livro"
-                        value={formData.titulo}
-                        onChange={handleChange}
-                    />
-                </div>
-
-                <div className="form-group">
-                    <label htmlFor="autor">Autor</label>
-                    <input
-                        type="text"
-                        id="autor"
-                        name="autor"
-                        placeholder="Digite o autor do livro"
-                        value={formData.autor}
-                        onChange={handleChange}
-                    />
-                </div>
-
-                <div className="form-group">
-                    <label htmlFor="isbn">ISBN</label>
-                    <input
-                        type="text"
-                        id="isbn"
-                        name="isbn"
-                        placeholder="Digite o ISBN"
-                        value={formData.isbn}
-                        onChange={handleChange}
-                        ref={isbnInputRef}
-                    />
-                </div>
-
-                <div className="form-group">
-                    <label htmlFor="editoraId">Editora</label>
-                    <select
-                        id="editoraId"
-                        name="editoraId"
-                        value={formData.editoraId}
-                        onChange={handleChange}
-                    >
-                        <option value="">Selecione uma editora</option>
-                        {editoras.map((editora) => (
-                            <option key={editora.id} value={editora.id}>
-                                {editora.nome}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-
-                <div className="form-group">
-                    <label htmlFor="ano">Ano de Publicação</label>
-                    <input
-                        type="number"
-                        id="ano"
-                        name="ano"
-                        placeholder="Digite o ano de publicação"
-                        value={formData.ano}
-                        onChange={handleChange}
-                    />
-                </div>
-
-                <div className="form-group">
-                    <label htmlFor="genero">Gênero</label>
-                    <select
-                        id="genero"
-                        name="genero"
-                        value={formData.genero}
-                        onChange={handleChange}
-                    >
-                        <option value="">Selecione um gênero</option>
-                        {Object.values(GenerosEnum).map((genero) => (
-                            <option key={genero} value={genero}>
-                                {genero.charAt(0).toUpperCase() + genero.slice(1)}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-
-                <button type="submit" className="form-button">
-                    {isEditing ? "Atualizar" : "Cadastrar"}
-                </button>
-            </form>
+        <div class="container1">
+            <div className="form-container">
+                <h2 className="form-title">{isEditing ? "Editar Livro" : "Cadastrar Livro"}</h2>
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label htmlFor="titulo">Título</label>
+                        <input
+                            type="text"
+                            id="titulo"
+                            name="titulo"
+                            placeholder="Digite o título do livro"
+                            value={formData.titulo}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="autor">Autor</label>
+                        <input
+                            type="text"
+                            id="autor"
+                            name="autor"
+                            placeholder="Digite o autor do livro"
+                            value={formData.autor}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="isbn">ISBN</label>
+                        <input
+                            type="text"
+                            id="isbn"
+                            name="isbn"
+                            placeholder="Digite o ISBN"
+                            value={formData.isbn}
+                            onChange={handleChange}
+                            ref={isbnInputRef}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="editoraId">Editora</label>
+                        <select className="dropDown"
+                            id="editoraId"
+                            name="editoraId"
+                            value={formData.editoraId}
+                            onChange={handleChange}
+                        >
+                            <option value="">Selecione uma editora</option>
+                            {editoras.map((editora) => (
+                                <option key={editora.id} value={editora.id}>
+                                    {editora.nome}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="ano">Ano de Publicação</label>
+                        <input
+                            type="number"
+                            id="ano"
+                            name="ano"
+                            placeholder="Digite o ano de publicação"
+                            value={formData.ano}
+                            onChange={handleChange}
+                        />
+                    </div> 
+                    <div className="form-group">
+                        <label htmlFor="genero">Gênero</label>
+                        <select className="dropDown"
+                            id="genero"
+                            name="genero"
+                            value={formData.genero}
+                            onChange={handleChange}
+                        >
+                            <option value="">Selecione um gênero</option>
+                            {Object.values(GenerosEnum).map((genero) => (
+                                <option key={genero} value={genero}>
+                                    {genero.charAt(0).toUpperCase() + genero.slice(1)}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                    <button type="submit" className="form-button">
+                        {isEditing ? "Atualizar" : "Cadastrar"}
+                    </button>
+                </form>
+            </div>
         </div>
     );
 };

@@ -65,26 +65,28 @@ const Livro = () => {
 
     return (
         <div className="livro-container">
-            <h2 className="livro-title">Relação de Livros</h2>
-            <button className="livro-btn-new" onClick={() => navigate("/livrosform")}>Novo Registro</button>
+            <div class="livro-header">
+                <h2 className="livro-title">Relação de Livros</h2>
+                <button className="livro-btn-new" onClick={() => navigate("/livrosform")}>Novo Registro</button>
+            </div>
 
             <div className="livro-filter">
                 <span>Pesquisar</span>
                 <input type="text" name="titulo" placeholder="Buscar por título" value={filters.titulo} onChange={handleFilterChange} />
                 <input type="text" ref={isbnInputRef} name="isbn" placeholder="Buscar por ISBN" value={filters.isbn} onChange={handleFilterChange} />
-                <select name="genero" value={filters.genero} onChange={handleFilterChange}>
-                    <option value="">Selecione um Gênero</option>
+                <select className="dropDown" name="genero" value={filters.genero} onChange={handleFilterChange}>
+                    <option value="">Gênero</option>
                     {Object.values(GenerosEnum).map((genero) => (
                         <option key={genero} value={genero}>{genero.replace("_", " ")}</option>
                     ))}
                 </select>
-                <select name="isDisponivel" value={filters.isDisponivel} onChange={handleFilterChange}>
+                <select className="dropDown"  name="isDisponivel" value={filters.isDisponivel} onChange={handleFilterChange}>
                     <option value="">Disponibilidade</option>
                     <option value="true">Disponível</option>
                     <option value="false">Indisponível</option>
                 </select>
-                <select name="editoraId" value={filters.editoraId} onChange={handleFilterChange}>
-                    <option value="">Selecione uma Editora</option>
+                <select className="dropDown" name="editoraId" value={filters.editoraId} onChange={handleFilterChange}>
+                    <option value="">Editora</option>
                     {editoras.map((editora) => (
                         <option key={editora.id} value={editora.id}>{editora.nome}</option>
                     ))}
@@ -125,7 +127,7 @@ const Livro = () => {
                 <p>Total: {totalRecords}</p>
                 <label>
                     Registros por página:
-                    <select value={limit} onChange={handleLimitChange}>
+                    <select className="dropDown" value={limit} onChange={handleLimitChange}>
                         <option value="5">5</option>
                         <option value="10">10</option>
                         <option value="25">25</option>
