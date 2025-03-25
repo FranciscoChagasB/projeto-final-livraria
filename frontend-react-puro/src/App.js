@@ -12,43 +12,51 @@ import LivroForm from './components/Livro/LivroForm/LivroForm.js';
 import EditoraForm from './components/Editora/EditoraForm/EditoraForm.js';
 import PageNotFound from './components/NotFound/NotFound.js';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import { ThemeProvider } from './context/ThemeContext';
+import ThemeToggle from '../src/components/ThemeToggle.js';
+import '../src/styles/themes.css';
+
 
 function HeaderWrapper() {
   const location = useLocation();
-  
+
   // Não exibe o Header nas rotas de Login e Register
   if (location.pathname === '/login' || location.pathname === '/register') {
     return null;
   }
-  
+
   return <Header />;
 }
 
 function App() {
   return (
-    <Router>
-      <HeaderWrapper /> {/* Coloca o HeaderWrapper aqui para usar useLocation */}
+    <ThemeProvider>
+      <ThemeToggle />
+      <Router>
+        <HeaderWrapper /> {/* Coloca o HeaderWrapper aqui para usar useLocation */}
 
-      <Routes>
-        {/* Rotas públicas */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Routes>
+          {/* Rotas públicas */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
 
-        {/* Rotas protegidas (necessitam de login) */}
-        <Route path="/" element={<Navigate to="/home" />} />
-        <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
-        <Route path="/editora" element={<ProtectedRoute><Editora /></ProtectedRoute>} />
-        <Route path="/livro" element={<ProtectedRoute><Livro /></ProtectedRoute>} />
-        <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-        <Route path='/editoraform' element={<ProtectedRoute><EditoraForm /></ProtectedRoute>} />
-        <Route path='/editoraform/:id' element={<ProtectedRoute><EditoraForm /></ProtectedRoute>} />
-        <Route path='/livrosform' element={<ProtectedRoute><LivroForm /></ProtectedRoute>} />
-        <Route path='/livrosform/:id' element={<ProtectedRoute><LivroForm /></ProtectedRoute>} />
-        
-        {/* Rota padrão ou erro 404 */}
-        <Route path="*" element={<PageNotFound />} />
-      </Routes>
-    </Router>
+          {/* Rotas protegidas (necessitam de login) */}
+          <Route path="/" element={<Navigate to="/home" />} />
+          <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+          <Route path="/editora" element={<ProtectedRoute><Editora /></ProtectedRoute>} />
+          <Route path="/livro" element={<ProtectedRoute><Livro /></ProtectedRoute>} />
+          <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+          <Route path='/editoraform' element={<ProtectedRoute><EditoraForm /></ProtectedRoute>} />
+          <Route path='/editoraform/:id' element={<ProtectedRoute><EditoraForm /></ProtectedRoute>} />
+          <Route path='/livrosform' element={<ProtectedRoute><LivroForm /></ProtectedRoute>} />
+          <Route path='/livrosform/:id' element={<ProtectedRoute><LivroForm /></ProtectedRoute>} />
+
+          {/* Rota padrão ou erro 404 */}
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+
+      </Router>
+    </ThemeProvider>
   );
 }
 

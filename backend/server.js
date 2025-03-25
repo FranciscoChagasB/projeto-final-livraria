@@ -23,6 +23,6 @@ app.use('/api/livros', livroRoutes);
 app.use('/api/alunos', alunoRoutes);
 app.use('/api/emprestimos', emprestimoRoutes);
 
-app.listen(8090, () => {
+app.listen(8090, '0.0.0.0', () => {
     console.log('Servidor rodando na porta 8090');
 });
