@@ -76,6 +76,38 @@ async function getLivrosByFilters(req, res) {
     }
 }
 
+// Buscar apenas livros disponíveis
+async function getAvailableLivros(req, res) {
+    const { page = 1, limit = 10 } = req.query;
+
+    const pageNumber = parseInt(page, 10);
+    const limitNumber = parseInt(limit, 10);
+
+    try {
+        const livrosDisponiveis = await prisma.livro.findMany({
+            where: {
+                isDisponivel: true, // Filtra apenas livros disponíveis
+            },
+            skip: (pageNumber - 1) * limitNumber,
+            take: limitNumber,
+            include: {
+                editora: true, // Inclui os dados da editora relacionada
+            },
+        });
+
+        const total = await prisma.livro.count({
+            where: {
+                isDisponivel: true, // Conta apenas livros disponíveis
+            },
+        });
+
+        return res.json({ total, page: pageNumber, limit: limitNumber, data: livrosDisponiveis });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: 'Erro ao buscar livros disponíveis' });
+    }
+}
+
 // Buscar um livro por ID
 async function getLivroById(req, res) {
     const { id } = req.params;
@@ -136,6 +168,7 @@ module.exports = {
     createLivro,
     getAllLivros,
     getLivrosByFilters,
+    getAvailableLivros,
     getLivroById,
     updateLivro,
     deleteLivro,

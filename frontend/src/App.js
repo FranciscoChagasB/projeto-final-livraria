@@ -12,6 +12,10 @@ import LivroForm from './components/Livro/LivroForm/LivroForm.js';
 import EditoraForm from './components/Editora/EditoraForm/EditoraForm.js';
 import PageNotFound from './components/NotFound/NotFound.js';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import Aluno from './components/Aluno/Aluno.js';
+import AlunoForm from './components/Aluno/AlunoForm/AlunoForm.js';
+import Emprestimo from './components/Emprestimo/Emprestimo.js';
+import EmprestimoForm from './components/Emprestimo/EmprestimoForm/EmprestimoForm.js';
 
 function HeaderWrapper() {
   const location = useLocation();
@@ -44,6 +48,12 @@ function App() {
         <Route path='/editoraform/:id' element={<ProtectedRoute><EditoraForm /></ProtectedRoute>} />
         <Route path='/livrosform' element={<ProtectedRoute><LivroForm /></ProtectedRoute>} />
         <Route path='/livrosform/:id' element={<ProtectedRoute><LivroForm /></ProtectedRoute>} />
+        <Route path='/aluno' element={<ProtectedRoute><Aluno /></ProtectedRoute>}/>
+        <Route path='/alunosform' element={<ProtectedRoute><AlunoForm /></ProtectedRoute>}/>
+        <Route path='/alunosform/:id' element={<ProtectedRoute><AlunoForm /></ProtectedRoute>}/>
+        <Route path='/emprestimo' element={<ProtectedRoute><Emprestimo /></ProtectedRoute>}/>
+        <Route path='/emprestimosform' element={<ProtectedRoute><EmprestimoForm /></ProtectedRoute>}/>
+        <Route path='/emprestimosform/:id' element={<ProtectedRoute><EmprestimoForm /></ProtectedRoute>}/>
         
         {/* Rota padrão ou erro 404 */}
         <Route path="*" element={<PageNotFound />} />

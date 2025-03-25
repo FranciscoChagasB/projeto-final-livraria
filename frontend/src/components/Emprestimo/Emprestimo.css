@@ -1,0 +1,110 @@
+.emprestimo-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f4f9f4;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 100px;
+}
+
+.emprestimo-title {
+    font-size: 2rem;
+    color: #3b9d56;
+    margin-bottom: 20px;
+}
+
+.emprestimo-btn-new {
+    background-color: #3b9d56;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 15px;
+    float: right;
+}
+
+.emprestimo-btn-new:hover {
+    background-color: #2a7b41;
+}
+
+.emprestimo-filter {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.emprestimo-filter input, .emprestimo-filter select {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 250px;
+}
+
+.emprestimo-list {
+    margin-top: 20px;
+}
+
+.emprestimo-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.emprestimo-table th, .emprestimo-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.emprestimo-table th {
+    background-color: #3b9d56;
+    color: white;
+}
+
+.emprestimo-btn-edit, .emprestimo-btn-delete {
+    padding: 8px 12px;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.emprestimo-btn-edit {
+    background-color: #f1c40f;
+    color: white;
+    border: none;
+}
+
+.emprestimo-btn-edit:hover {
+    background-color: #f39c12;
+}
+
+.emprestimo-btn-delete {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+}
+
+.emprestimo-btn-delete:hover {
+    background-color: #c0392b;
+}
+
+.emprestimo-pagination {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.emprestimo-pagination select {
+    padding: 5px;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}

@@ -42,7 +42,7 @@ const Header = () => {
         <header className="header-container">
             {/* Logo */}
             <div className="logo">
-                <h1>Sistema de Livraria</h1>
+                <h1>Sistema de Biblioteca</h1>
             </div>
 
             {/* Navbar padrão (desktop) */}
@@ -52,8 +52,8 @@ const Header = () => {
                         <li><Link to="/home">Home</Link></li>
                         <li><Link to="/editora">Editoras</Link></li>
                         <li><Link to="/livro">Livros</Link></li>
-                        <li><Link to="/emprestimo">Emprestimo</Link></li>
-                        <li><Link to="/aluno">Cadastro aluno</Link></li>
+                        <li><Link to="/emprestimo">Empréstimos</Link></li>
+                        <li><Link to="/aluno">Alunos</Link></li>
                     </ul>
                 </nav>
 

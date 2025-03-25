@@ -23,6 +23,16 @@ export const getLivros = async (page = 1, limit = 5) => {
     }
 };
 
+export const getLivrosDisponiveis = async (page = 1, limit = 100) => {
+    try {
+        const res = await axios.get(`${API_URL}/api/livros/available?page=${page}&limit=${limit}`);
+        return res.data;
+    } catch (error) {
+        console.error("Erro ao buscar livros disponíveis", error);
+        return { data: [], total: 0 };
+    }
+};
+
 export const getLivroById = async (id) => {
     try {
         const res = await axios.get(`${API_URL}/api/livros/${id}`);

@@ -6,26 +6,59 @@ const prisma = new PrismaClient();
 async function createEmprestimo(req, res) {
     const { alunoId, livros, dataFim } = req.body;
 
+    // Validações básicas
     if (!alunoId || !livros || livros.length === 0 || !dataFim) {
         return res.status(400).json({ message: 'AlunoId, livros e dataFim são obrigatórios' });
     }
 
     try {
+        // Criação do empréstimo
         const emprestimo = await prisma.emprestimo.create({
             data: {
-                alunoId,
+                alunoId: parseInt(alunoId),
                 dataFim: new Date(dataFim),
                 livros: {
-                    create: livros.map(livroId => ({ livroId })),
-                },
+                    create: livros.map(livroId => ({
+                        livro: { connect: { id: livroId } } // Relaciona o livro pelo id corretamente
+                    }))
+                }
             },
-            include: { livros: true },
+            include: {
+                livros: true  // Incluindo os livros associados no retorno
+            }
         });
 
-        return res.status(201).json(emprestimo);
+        // Atualizar o status dos livros emprestados para isDisponivel = false
+        for (const livroId of livros) {
+            // Chama o método getLivroById para obter os detalhes do livro
+            const livro = await prisma.livro.findUnique({
+                where: {
+                    id: livroId
+                }
+            });
+
+            if (livro && livro.isDisponivel) {
+                // Atualiza a disponibilidade do livro para false
+                await prisma.livro.update({
+                    where: {
+                        id: livroId
+                    },
+                    data: {
+                        isDisponivel: false
+                    }
+                });
+            }
+        }
+
+        // Retornando a resposta ao cliente com detalhes
+        return res.status(201).json({
+            message: 'Empréstimo criado com sucesso!',
+            emprestimo: emprestimo,
+        });
+
     } catch (error) {
         console.error(error);
-        return res.status(500).json({ message: 'Erro ao criar empréstimo' });
+        return res.status(500).json({ message: 'Erro ao criar empréstimo', error: error.message });
     }
 }
 
