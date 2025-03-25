@@ -39,7 +39,7 @@
 }
 
 .home-featured h3 {
-    color: #002a30;
+    color: var(--title-color-featured);
     margin-bottom: 10px;
 }
 
@@ -58,6 +58,7 @@
     border-bottom: 1px solid #ddd;
     display: flex;
     flex-direction: column;
+    color: var(--text-color-featured);
 }
 
 .home-featured li:last-child {

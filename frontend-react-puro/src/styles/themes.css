@@ -4,7 +4,8 @@
     
     /* Theme switch pagina Home */
     --text-color-home-title: #2e8b57;
-    --div-color-featured: white;
+    --div-color-featured: #002a30;
+    --text-color-featured: white;
     --text-color-categories-title: #2e8b57;
     --div-color-category: #002a30;
     --text-color-category: white;
@@ -22,7 +23,7 @@
     --div-color-category: #f2f2f2;
     --text-color-category: #000000f0;
     --div-color-featured: #f2f2f2;
-    --text-color-featured: #2e8b57;
+    --text-color-featured: #002a30;
     --title-color-home: white;
     --title-color-categories: white;
     
