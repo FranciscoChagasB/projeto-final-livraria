@@ -98,5 +98,5 @@ Este projeto está licenciado sob a [MIT License](LICENSE).
 Desenvolvido por:
 Francisco das Chagas(https://github.com/FranciscoChagasB)🚀
 Lucas Davi(https://github.com/davilucasx) 🚀
-Dervando Gomes(github não informado) 🚀
+Dervando Gomes(https://github.com/UchihaDevan) 🚀
 
