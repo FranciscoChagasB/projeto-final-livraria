@@ -10,12 +10,12 @@
 
 .livro-title {
     font-size: 2rem;
-    color: #3b9d56;
+    color: #d3d3d3;
     margin-bottom: 20px;
 }
 
 .livro-btn-new {
-    background-color: #3b9d56;
+    background-color: #09180d;
     color: white;
     border: none;
     padding: 10px 15px;
@@ -70,7 +70,7 @@
 }
 
 .livro-table th {
-    background-color: #3b9d56;
+    background-color: #0b140e;
     color: white;
 }
 
@@ -84,23 +84,23 @@
 }
 
 .livro-btn-edit {
-    background-color: #f1c40f;
+    background-color: #110f09;
     color: white;
     border: none;
 }
 
 .livro-btn-edit:hover {
-    background-color: #f39c12;
+    background-color: #110e08;
 }
 
 .livro-btn-delete {
-    background-color: #e74c3c;
+    background-color: #1f0e0c;
     color: white;
     border: none;
 }
 
 .livro-btn-delete:hover {
-    background-color: #c0392b;
+    background-color: #0a0404;
 }
 
 .livro-pagination {
@@ -119,18 +119,4 @@
     display: flex;
     justify-content: center;
     gap: 10px;
-}
-
-.pagination-buttons button {
-    background-color: #3b9d56;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    font-size: 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.pagination-buttons button:hover {
-    background-color: #2a7b41;
 }

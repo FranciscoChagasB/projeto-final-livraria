@@ -69,68 +69,66 @@ const EditoraForm = () => {
     };
 
     return (
-        <div className="form-container">
-            <Helmet>
-                <title>Sistema de Gerenciamento de Biblioteca</title>
-            </Helmet>
-            <h2 className="form-title">{isEditing ? "Editar Editora" : "Cadastrar Editora"}</h2>
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="nome">Nome</label>
-                    <input
-                        type="text"
-                        id="nome"
-                        name="nome"
-                        placeholder="Digite o nome da editora"
-                        value={formData.nome}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-
-                <div className="form-group">
-                    <label htmlFor="emailContato">E-mail</label>
-                    <input
-                        type="email"
-                        id="emailContato"
-                        name="emailContato"
-                        placeholder="Digite o e-mail de contato"
-                        value={formData.emailContato}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-
-                <div className="form-group">
-                    <label htmlFor="telefone">Telefone</label>
-                    <input
-                        type="text"
-                        id="telefone"
-                        name="telefone"
-                        placeholder="Digite o telefone"
-                        value={formData.telefone}
-                        onChange={handleChange}
-                    />
-                </div>
-
-                <div className="form-group">
-                    <label htmlFor="cnpj">CNPJ</label>
-                    <input
-                        type="text"
-                        id="cnpj"
-                        name="cnpj"
-                        placeholder="Digite o CNPJ"
-                        value={formData.cnpj}
-                        onChange={handleChange}
-                        ref={cnpjInputRef}
-                        required
-                    />
-                </div>
-
-                <button type="submit" className="form-button" disabled={loading}>
-                    {loading ? "Salvando..." : isEditing ? "Atualizar" : "Cadastrar"}
-                </button>
-            </form>
+        <div class="container1">
+            <div className="form-container">
+                <Helmet>
+                    <title>Sistema de Gerenciamento de Biblioteca</title>
+                </Helmet>
+                <h2 className="form-title">{isEditing ? "Editar Editora" : "Cadastrar Editora"}</h2>
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label htmlFor="nome">Nome</label>
+                        <input
+                            type="text"
+                            id="nome"
+                            name="nome"
+                            placeholder="Digite o nome da editora"
+                            value={formData.nome}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="emailContato">E-mail</label>
+                        <input
+                            type="email"
+                            id="emailContato"
+                            name="emailContato"
+                            placeholder="Digite o e-mail de contato"
+                            value={formData.emailContato}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="telefone">Telefone</label>
+                        <input
+                            type="text"
+                            id="telefone"
+                            name="telefone"
+                            placeholder="Digite o telefone"
+                            value={formData.telefone}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="cnpj">CNPJ</label>
+                        <input
+                            type="text"
+                            id="cnpj"
+                            name="cnpj"
+                            placeholder="Digite o CNPJ"
+                            value={formData.cnpj}
+                            onChange={handleChange}
+                            ref={cnpjInputRef}
+                            required
+                        />
+                    </div>
+                    <button type="submit" className="form-button" disabled={loading}>
+                        {loading ? "Salvando..." : isEditing ? "Atualizar" : "Cadastrar"}
+                    </button>
+                </form>
+            </div>
         </div>
     );
 };
