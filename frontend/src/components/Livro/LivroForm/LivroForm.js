@@ -4,6 +4,7 @@ import IMask from "imask";
 import { GenerosEnum } from "../../../enum/GeneroEnum";
 import { createLivro, updateLivro } from "../../../services/livrosService";
 import { getEditoras } from "../../../services/editorasService";
+import './LivroForm.css'
 
 const LivroForm = () => {
     const [formData, setFormData] = useState({
@@ -49,6 +50,10 @@ const LivroForm = () => {
             });
         }
     }, [location.state]);
+
+    const handleCancel = () => {
+        navigate("/livro"); // Voltar para a página de listagem de livros
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -187,6 +192,10 @@ const LivroForm = () => {
 
                 <button type="submit" className="form-button">
                     {isEditing ? "Atualizar" : "Cadastrar"}
+                </button>
+
+                <button type="button" className="form-button-cancel" onClick={handleCancel}>
+                    Cancelar
                 </button>
             </form>
         </div>

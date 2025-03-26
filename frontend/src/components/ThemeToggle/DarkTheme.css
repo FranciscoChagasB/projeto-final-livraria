@@ -1,0 +1,33 @@
+[data-theme="light"] {
+    --background-color: #f2f2f2;
+    --text-color: #000000;
+
+    /* Theme switch pagina Home */
+    --text-color-home-title: #2e8b57;
+    --div-color-featured: #002a30;
+    --text-color-featured: white;
+    --text-color-categories-title: #2e8b57;
+    --div-color-category: #002a30;
+    --text-color-category: white;
+
+    /* Theme switch pagina Login */
+    --div-form-login: #002a30;
+    --title-color-login: #2e8b57;
+}
+
+[data-theme="dark"] {
+    --background-color: #002a30;
+    --text-color: #ffffff;
+
+    /* Theme switch pagina Home */
+    --div-color-category: #f2f2f2;
+    --text-color-category: #000000f0;
+    --div-color-featured: #f2f2f2;
+    --text-color-featured: #002a30;
+    --title-color-home: white;
+    --title-color-categories: white;
+
+    /* Theme switch pagina Login */
+    --div-form-login: #f2f2f2;
+    --title-color-login: white;
+}

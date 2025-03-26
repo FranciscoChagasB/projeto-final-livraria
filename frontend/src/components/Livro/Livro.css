@@ -1,34 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+* {
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+}
+
 .livro-container {
     max-width: 1200px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #f4f9f4;
+    background-color: #002a30ea;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-top: 100px;
 }
 
 .livro-title {
     font-size: 2rem;
-    color: #3b9d56;
+    color: #f2f2f2;
     margin-bottom: 20px;
 }
 
 .livro-btn-new {
-    background-color: #3b9d56;
-    color: white;
+    background-color: #f5f5f5;
+    color: #002a30;
     border: none;
     padding: 10px 15px;
     font-size: 1rem;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
-    margin-bottom: 15px;
-    float: right;
 }
 
 .livro-btn-new:hover {
-    background-color: #2a7b41;
+    background-color: #01fb9f9d;
+}
+
+.livro-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .livro-filter {
@@ -42,14 +55,22 @@
 .livro-filter select {
     padding: 10px;
     font-size: 1rem;
-    border: 1px solid #ccc;
+    border: 2px solid #002a30;
     border-radius: 4px;
     width: 225px;
+    background-color: #f2f2f2;
+    color: #002a30;
+}
+
+.livro-filter input:focus {
+    outline: none;
+    border-color: #01fb9f9d;
+    box-shadow: 0 0 4px rgba(59, 157, 86, 0.3);
 }
 
 .livro-filter span {
     font-size: 1rem;
-    color: #555;
+    color: #f2f2f2;
 }
 
 .livro-list {
@@ -58,20 +79,20 @@
 
 .livro-table {
     width: 100%;
-    border-collapse: collapse;
     margin-top: 20px;
 }
 
 .livro-table th,
 .livro-table td {
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #f5f5f5;
     text-align: left;
+    color: #f2f2f2;
 }
 
 .livro-table th {
-    background-color: #3b9d56;
-    color: white;
+    background-color: #f5f5f5;
+    color: #002a30e7;
 }
 
 .livro-btn-edit,
@@ -81,26 +102,14 @@
     border-radius: 4px;
     cursor: pointer;
     margin-right: 10px;
-}
-
-.livro-btn-edit {
-    background-color: #f1c40f;
-    color: white;
     border: none;
+    background-color: #ffffff;
+    color: #000000;
 }
 
-.livro-btn-edit:hover {
-    background-color: #f39c12;
-}
-
-.livro-btn-delete {
-    background-color: #e74c3c;
-    color: white;
-    border: none;
-}
-
+.livro-btn-edit:hover,
 .livro-btn-delete:hover {
-    background-color: #c0392b;
+    background-color: #01fb9f9d;
 }
 
 .livro-pagination {
@@ -110,9 +119,18 @@
     gap: 10px;
 }
 
+.livro-pagination p {
+    font-size: 20px;
+    color: #f2f2f2;
+    font-weight: 500;
+}
+
 .pagination-info {
     margin-top: 20px;
     text-align: center;
+    font-size: 20px;
+    color: #f2f2f2;
+    font-weight: 500;
 }
 
 .pagination-buttons {
@@ -122,63 +140,54 @@
 }
 
 .pagination-buttons button {
-    background-color: #3b9d56;
-    color: white;
+    background-color: #f5f5f5;
+    color: #002a30;
     border: none;
     padding: 8px 15px;
-    font-size: 1rem;
+    font-size: 1.2rem;
     border-radius: 4px;
     cursor: pointer;
 }
 
 .pagination-buttons button:hover {
-    background-color: #2a7b41;
+    background-color: #01fb9f9d;
 }
 
-/* Mensagem de erro */
-.error-message {
-    color: #d32f2f;
-    background-color: #fdecea;
-    border: 1px solid #d32f2f;
-    padding: 10px;
-    border-radius: 5px;
+.dropDown {
+    width: auto;
+    padding: 8px;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    border: 2px solid #002a30;
+    border-radius: 4px;
+    background-color: #f5f5f5;
+    color: #002a30;
+    appearance: none;
+    cursor: pointer;
+    transition: 0.2s ease;
     text-align: center;
-    font-weight: bold;
-    margin: 10px 0;
-    opacity: 0;
-    animation: fadeIn 1s forwards;
 }
 
-/* Mensagem de sucesso */
-.success-message {
-    color: #2e7d32;
-    background-color: #e8f5e9;
-    border: 1px solid #2e7d32;
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
-    font-weight: bold;
-    margin: 10px 0;
-    opacity: 0;
-    animation: fadeIn 1s forwards;
+
+.dropDown {
+    background-image: url("data:image/svg+xml;utf8,<svg fill='%23002a30' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 14px;
+    padding-right: 28px;
 }
 
-/* Mensagem de carregamento */
-.loading-message {
-    color: #1976d2;
-    font-size: 1.2em;
-    font-weight: bold;
-    margin: 10px 0;
-    opacity: 0;
-    animation: fadeIn 1s forwards;
+.dropDown option {
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
 }
 
-/* Animação fade-in */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+.dropDown:hover {
+    background-color: #ffffff;
+}
+
+.dropDown:focus {
+    outline: none;
+    border-color: #01fb9f;
+    box-shadow: 0 0 4px rgba(1, 251, 159, 0.5);
 }

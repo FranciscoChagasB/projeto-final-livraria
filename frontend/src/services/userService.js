@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { jwtDecode } from 'jwt-decode';
 
 const API_URL = 'http://localhost:8090';
 

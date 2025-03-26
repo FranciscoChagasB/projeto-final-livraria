@@ -151,7 +151,7 @@ const EditoraForm = () => {
                 <button type="submit" className="form-button" disabled={loading}>
                     {loading ? "Salvando..." : isEditing ? "Atualizar" : "Cadastrar"}
                 </button>
-                <button className="form-button-cancelar" onClick={handleBack}>Cancelar</button>
+                <button className="form-button-cancel" onClick={handleBack}>Cancelar</button>
             </form>
         </div>
     );

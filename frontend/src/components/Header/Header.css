@@ -5,12 +5,21 @@
     padding: 10px 20px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     width: 100%;
     position: fixed;
     top: 0;
     left: 0;
     height: 60px;
     z-index: 1000;
+}
+
+.logo h1 {
+    color: #ffffff;
+    font-size: 22px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    margin-left: 20px;
 }
 
 .nav-content {
@@ -22,14 +31,6 @@
     margin: 0 auto;
 }
 
-.logo h1 {
-    color: #ffffff;
-    font-size: 22px;
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-}
-
-/* Navbar */
 .nav ul {
     list-style: none;
     padding: 0;
@@ -40,6 +41,8 @@
 
 .nav ul li {
     margin: 10px;
+    display: flex;
+    align-items: center;
 }
 
 .nav ul li a {
@@ -50,7 +53,7 @@
     transition: all 0.3s ease;
     font-family: "Poppins", sans-serif;
     font-weight: 400;
-    display: inline-block; /* Garante que o efeito seja aplicado corretamente */
+    display: inline-block;
 }
 
 .nav ul li:hover > a {
@@ -65,6 +68,7 @@
     position: relative;
     display: flex;
     align-items: center;
+    margin-right: 20px;
 }
 
 .profileButton {
@@ -74,15 +78,13 @@
     font-size: 22px;
     cursor: pointer;
     margin-top: 12px;
-    margin-right: 120px;
 }
 
 .profileButton:hover {
     opacity: 0.8;
 }
 
-/* Dropdown do perfil */
-.dropdown-menu {
+.profile-container .dropdown-menu {
     position: absolute;
     top: 40px;
     right: 0;
@@ -93,25 +95,28 @@
     width: 140px;
     padding: 8px 0;
     align-items: center;
-    margin-right: 120px;
     margin-top: 15px;
+    z-index: 1000;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.dropdown-menu a {
+.dropdown-menu a, .dropdown-menu button {
     display: block;
     font-size: 20px;
     text-decoration: none;
     color: #273523;
     font-weight: bold;
+    padding: 8px;
+    border-radius: 8px;
+    text-align: center;
+    background-color: #ffffff;
+    border: none;
+    cursor: pointer;
 }
 
-.dropdown-menu button {
-    display: block;
-    text-decoration: none;
-    color: #273523;
-    background-color: #ffffff;
-    font-weight: bold;
-    margin-top: 10px;
+.dropdown-menu button:hover,
+.dropdown-menu a:hover {
+    background-color: #a6dbc8bd;
 }
 
 /* Ícone do menu hambúrguer (somente mobile) */
@@ -119,6 +124,7 @@
     display: none;
     flex-direction: column;
     cursor: pointer;
+    margin-left: 10px;
 }
 
 .hamburger-menu div {
@@ -140,6 +146,7 @@
     flex-direction: column;
     padding: 20px 0;
     border-bottom-right-radius: 8px;
+    z-index: 999;
 }
 
 .mobile-nav.open {
@@ -160,7 +167,58 @@
     text-decoration: none;
     font-size: 30px;
     padding: 20px;
-    margin-top: 60px;
     font-family: "Poppins", sans-serif;
     font-weight: 400;
+}
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+    .header-container {
+        height: 80px;
+    }
+
+    .header-container .logo {
+        font-size: 14px;
+        margin-left: 10px;
+    }
+
+    .nav-content {
+        display: none;
+    }
+
+    .hamburger-menu {
+        display: flex;
+    }
+
+    .profile-container {
+        margin-right: 10px;
+    }
+
+    .mobile-nav {
+        width: 100%;
+        padding: 20px 0;
+    }
+
+    .mobile-nav ul li a {
+        font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .header-container {
+        height: 70px;
+    }
+
+    .header-container .logo {
+        font-size: 12px;
+    }
+
+    .mobile-nav ul li a {
+        font-size: 20px;
+    }
+
+    .hamburger-menu div {
+        width: 20px;
+        height: 1.5px;
+    }
 }

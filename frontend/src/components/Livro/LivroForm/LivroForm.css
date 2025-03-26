@@ -2,14 +2,14 @@
     max-width: 800px;
     margin: 40px auto;
     padding: 20px;
-    background-color: #f4f9f4;
+    background-color: #002a30ea;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .form-title {
     font-size: 2rem;
-    color: #3b9d56;
+    color: #f2f2f2;
     margin-bottom: 20px;
     text-align: center;
 }
@@ -20,7 +20,7 @@
 
 .form-group label {
     font-size: 1.1rem;
-    color: #333;
+    color: #f2f2f2;
     display: block;
     margin-bottom: 8px;
 }
@@ -30,82 +30,61 @@
     width: 100%;
     padding: 10px;
     font-size: 1rem;
-    border: 1px solid #ccc;
+    border: 2px solid #f2f2f2;
     border-radius: 4px;
+    background-color: #f5f5f5;
+    color: #002a30;
     box-sizing: border-box;
 }
 
 .form-group input:focus,
 .form-group select:focus {
     outline: none;
-    border-color: #3b9d56;
-    box-shadow: 0 0 4px rgba(59, 157, 86, 0.3);
+    border-color: #f2f2f2;
+    box-shadow: 0 0 4px rgba(0, 42, 48, 0.3);
 }
 
 .form-button {
-    background-color: #3b9d56;
-    color: white;
+    background-color: #ffffff;
+    color: #002a30;
     padding: 12px 20px;
     font-size: 1.1rem;
-    border: none;
+    border: 2px solid #002a30;
     border-radius: 4px;
     cursor: pointer;
     width: 100%;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .form-button:hover {
-    background-color: #2a7b41;
+    background-color: #01fb9f9d;
+    color: #002a30;
 }
 
 .form-button:active {
-    background-color: #1c6e33;
+    background-color: #01fb9f9d;
+    color: #002a30;
 }
 
-/* Mensagem de erro */
-.error-message {
-    color: #d32f2f;
-    background-color: #fdecea;
-    border: 1px solid #d32f2f;
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
-    font-weight: bold;
-    margin: 10px 0;
-    opacity: 0;
-    animation: fadeIn 1s forwards;
+.form-button-cancel {
+    background-color: #f5f5f5;
+    color: #002a30;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    border: 2px solid #002a30;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-/* Mensagem de sucesso */
-.success-message {
-    color: #2e7d32;
-    background-color: #e8f5e9;
-    border: 1px solid #2e7d32;
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
-    font-weight: bold;
-    margin: 10px 0;
-    opacity: 0;
-    animation: fadeIn 1s forwards;
+.form-button-cancel:hover {
+    background-color: #01fb9f9d;
+    color: #002a30;
 }
 
-/* Mensagem de carregamento */
-.loading-message {
-    color: #1976d2;
-    font-size: 1.2em;
-    font-weight: bold;
-    margin: 10px 0;
-    opacity: 0;
-    animation: fadeIn 1s forwards;
-}
-
-/* Animação fade-in */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+.form-button-cancel:active {
+    background-color: #01fb9f9d;
+    color: #002a30;
 }

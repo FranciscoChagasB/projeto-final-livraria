@@ -57,6 +57,13 @@ const Profile = () => {
         <div className="container">
             <div className="user-profile-container">
                 <h1 tabIndex="-1">Perfil</h1>
+
+                {/* Exibindo a mensagem de erro, se existir */}
+                {error && <div className="error-message">{error}</div>}
+
+                {/* Exibindo a mensagem de sucesso, se existir */}
+                {successMessage && <div className="success-message">{successMessage}</div>}
+
                 <form className="user-profile-form" onSubmit={handleSubmit}>
                     <label>Nome</label>
                     <input
@@ -65,7 +72,6 @@ const Profile = () => {
                         onChange={(e) => setName(e.target.value)}
                         placeholder="Nome"
                         required
-
                     />
                     <label>CPF</label>
                     <input
