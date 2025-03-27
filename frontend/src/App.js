@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import ProtectedRoute from './services/ProtectedRoute.js';
+import Footer from './components/Footer/Footer.js';
 import Header from './components/Header/Header.js';
 import Editora from './components/Editora/Editora.js';
 import Livro from './components/Livro/Livro.js';
@@ -11,7 +13,6 @@ import Register from './components/Login/RegisterUser.js';
 import LivroForm from './components/Livro/LivroForm/LivroForm.js';
 import EditoraForm from './components/Editora/EditoraForm/EditoraForm.js';
 import PageNotFound from './components/NotFound/NotFound.js';
-import 'bootstrap-icons/font/bootstrap-icons.css';
 import Aluno from './components/Aluno/Aluno.js';
 import AlunoForm from './components/Aluno/AlunoForm/AlunoForm.js';
 import Emprestimo from './components/Emprestimo/Emprestimo.js';
@@ -29,6 +30,17 @@ function HeaderWrapper() {
   }
 
   return <Header />;
+}
+
+function FooterWrapper() {
+  const location = useLocation();
+
+  // Não exibe o Footer nas rotas de Login e Register
+  if (location.pathname === '/login' || location.pathname === '/register') {
+    return null;
+  }
+
+  return <Footer />;
 }
 
 function App() {
@@ -63,6 +75,8 @@ function App() {
           {/* Rota padrão ou erro 404 */}
           <Route path="*" element={<PageNotFound />} />
         </Routes>
+
+        <FooterWrapper />
       </Router>
     </ThemeProvider>
   );

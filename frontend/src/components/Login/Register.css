@@ -4,57 +4,57 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: #002a30;
+    background-color: var(--background-color);
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .register-container h2 {
-    color: #01fb9fb6;
+    color: var(--title-color-login);
     font-size: 28px;
+    font-weight: bold;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 .register-form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: white;
-    padding: 35px;
+    background: var(--div-form-login);
+    padding: 30px;
     border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 350px;
+    box-sizing: border-box;
 }
 
 .register-form input {
     width: 100%;
     padding: 10px;
-    margin: 10px 0;
-    border: 2px solid #014049;
+    margin: 15px 0;
+    border: 2px solid #2e8b57;
     border-radius: 5px;
     font-size: 16px;
 }
 
-.register-form input:focus {
-    outline: none;
-    border-color: #01fb9f9d;
-    box-shadow: 0 0 4px rgba(59, 157, 86, 0.3);
-}
-
 .register-form button {
     width: 100%;
-    background-color: #002a30;
+    background-color: #2e8b57;
     color: white;
     padding: 12px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 18px;
-    margin-top: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
     transition: background 0.3s;
 }
 
 .register-form button:hover {
-    background-color: #348e91;
+    background-color: #276749;
 }
 
 .register-form button:disabled {
@@ -64,13 +64,13 @@
 
 .register-container p {
     margin-top: 15px;
-    color: #01fb9fb6;
-    font-size: 18px;
+    color: #006400;
+    font-size: 14px;
 }
 
 .register-container p a {
-    color: #01fb9fb6;
-    font-size: 18px;
+    color: #2e8b57;
+    font-weight: bold;
     text-decoration: none;
 }
 
@@ -97,8 +97,39 @@
         opacity: 0;
         transform: translateY(-10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+    .register-form {
+        padding: 20px;
+        max-width: 98%;
+    }
+
+    .register-container h2 {
+        font-size: 24px;
+    }
+
+    .register-form input,
+    .register-form button {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
+@media (min-width: 768px) {
+    .register-form {
+        max-width: 400px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .register-form {
+        max-width: 450px;
     }
 }

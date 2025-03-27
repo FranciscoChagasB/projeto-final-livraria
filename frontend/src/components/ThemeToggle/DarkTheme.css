@@ -10,9 +10,10 @@
     --div-color-category: #002a30ea;
     --text-color-category: white;
 
-    /* Theme switch pagina Login */
-    --div-form-login: #002a30ea;
-    --title-color-login: #2e8b57;
+     /* Theme switch pagina Login */
+     --div-form-login: #002a30;
+     --title-color-login: #2e8b57;
+    
 }
 
 [data-theme="dark"] {

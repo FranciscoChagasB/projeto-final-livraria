@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { getLivrosByFilters } from '../../services/livrosService';
 import './Home.css';
 
 const Home = () => {
-    const [search, setSearch] = useState("");
     const [featuredBooks, setFeaturedBooks] = useState([]);
     const categories = ["Ficção", "Não-Ficção", "Fantasias", "Romances", "Terror", "Ciência"];
 
