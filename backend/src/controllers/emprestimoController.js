@@ -82,6 +82,71 @@ async function getAllEmprestimos(req, res) {
     }
 }
 
+// Buscar empréstimos não devolvidos
+async function getEmprestimosNaoDevolvidos(req, res) {
+    const { id } = req.params; // O id é capturado da URL
+
+    // Certifique-se de que o id seja convertido para número (Int) corretamente
+    const idInt = parseInt(id, 10);
+
+    // Verifique se o id foi convertido corretamente
+    if (isNaN(idInt)) {
+        return res.status(400).json({ message: 'ID inválido' });
+    }
+
+    try {
+        const emprestimo = await prisma.emprestimo.findUnique({
+            where: {
+                id: idInt, // Passando o id convertido como número
+            },
+            include: {
+                aluno: true,
+                livros: {
+                    include: {
+                        livro: true // Incluindo os detalhes dos livros associados via a tabela intermediária
+                    }
+                }
+            }
+        });
+
+        if (!emprestimo) {
+            return res.status(404).json({ message: 'Empréstimo não encontrado' });
+        }
+
+        return res.json(emprestimo);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: 'Erro ao buscar empréstimo' });
+    }
+}
+
+// Atualizar empréstimo para devolvido e marcar livro como disponível
+async function devolverEmprestimo(req, res) {
+    const { id } = req.params;
+
+    try {
+        // Encontra o empréstimo e atualiza o status de devolvido
+        const emprestimo = await prisma.emprestimo.update({
+            where: { id: parseInt(id, 10) },
+            data: { devolvido: true },
+            include: { livros: true }, // Inclui os livros do empréstimo
+        });
+
+        // Atualiza a disponibilidade dos livros para "true" (disponível)
+        for (const livroEmprestado of emprestimo.livros) {
+            await prisma.livro.update({
+                where: { id: livroEmprestado.livroId },
+                data: { isDisponivel: true },
+            });
+        }
+
+        return res.json({ message: 'Empréstimo devolvido com sucesso' });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: 'Erro ao devolver empréstimo' });
+    }
+}
+
 // Buscar empréstimos por filtros com paginação
 async function getEmprestimosByFilters(req, res) {
     const { aluno, livro, devolvido, previstaParaFim, page = 1, limit = 10 } = req.query;
@@ -192,6 +257,8 @@ async function deleteEmprestimo(req, res) {
 module.exports = {
     createEmprestimo,
     getAllEmprestimos,
+    getEmprestimosNaoDevolvidos,
+    devolverEmprestimo,
     getEmprestimosByFilters,
     getEmprestimoById,
     updateEmprestimo,

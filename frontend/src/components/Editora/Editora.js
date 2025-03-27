@@ -119,7 +119,7 @@ const Editora = () => {
 
             <div className="editora-pagination">
                 <p>Total: {totalRecords}</p>
-                <label>
+                <label className="label-editora-pagination">
                     Registros por página:
                     <select value={limit} onChange={handleLimitChange}>
                         <option value="5">5</option>
@@ -130,11 +130,11 @@ const Editora = () => {
                 </label>
             </div>
 
-            <div className="pagination-info">
+            <div className="pagination-info-editora">
                 <span>
                     Mostrando de {((page - 1) * limit) + 1} até {Math.min(page * limit, totalRecords)} de {totalRecords} registros
                 </span>
-                <div className="pagination-buttons">
+                <div className="pagination-buttons-editora">
                     <button onClick={() => setPage(Math.max(page - 1, 1))}>Anterior</button>
                     <span>Página {page}</span>
                     <button onClick={() => setPage(Math.min(page + 1, Math.ceil(totalRecords / limit)))}>Próxima</button>

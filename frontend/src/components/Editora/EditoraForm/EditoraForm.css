@@ -3,7 +3,12 @@
     font-family: 'Inter';
 }
 
-.container1 {
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.editoraform-container {
     display: flex;
     flex-direction: column; 
     justify-content: center;
@@ -12,33 +17,33 @@
     padding: 20px; 
 }
 
-.form-container {
+.form-container-editoraform {
     width: 100%;  
     max-width: 600px; 
     padding: 30px;
-    background-color: #002a30ea;
+    background-color: var(--div-form-login);
     border-radius: 8px;
     box-shadow: 0px 4px 10px rgba(228, 222, 222, 0.1);
 }
 
-.form-title {
+.form-title-editoraform {
     font-size: 2rem; 
-    color: #f2f2f2;
+    color: var(--background-color);
     text-align: center;
 }
 
-.form-group {
+.form-group-editoraform {
     margin-bottom: 15px;
 }
 
-.form-group label {
+.form-group-editoraform label {
     font-size: 1.1rem;
-    color: #f2f2f2;
+    color: var(--background-color);
     display: block;
     margin-bottom: 8px;
 }
 
-.form-group input {
+.form-group-editoraform input {
     width: 100%;
     padding: 10px;
     font-size: 1rem;
@@ -47,101 +52,50 @@
     box-sizing: border-box;
 }
 
-.form-group input:focus {
+.form-group-editoraform input:focus {
     outline: none;
     border-color: #01fb9f9d;
     box-shadow: 0 0 4px rgba(59, 157, 86, 0.3);
 }
 
-.form-button {
-    background-color: #ffffff;
-    color: #002a30;
+.form-button-editoraform {
+    background-color: var(--background-color);
+    color: var(--text-color);
     padding: 12px 20px;
     font-size: 1.1rem;
-    border: 2px solid #002a30;
+    border: none;
     border-radius: 4px;
+    margin: 10px 0;
     cursor: pointer;
     width: 100%;
-    transition: background-color 0.3s, color 0.3s;
+    transition: background-color 0.3s;
 }
 
-.form-button:hover {
+.form-button-editoraform:hover {
     background-color: #01fb9f9d;
-    color: #002a30;
 }
 
-.form-button:active {
+.form-button-editoraform:active {
     background-color: #01fb9f9d;
-    color: #002a30;
 }
 
-.form-button-cancel {
-    background-color: #f5f5f5;
-    color: #002a30;
+.form-button-cancel-editoraform {
+    background-color: var(--background-color);
+    color: var(--text-color);
     padding: 12px 20px;
     font-size: 1.1rem;
-    border: 2px solid #002a30;
+    border: none;
     border-radius: 4px;
+    margin: 10px 0;
     cursor: pointer;
     width: 100%;
-    margin-top: 10px;
-    transition: background-color 0.3s, color 0.3s;
+    transition: background-color 0.3s;
 }
 
-.form-button-cancel:hover {
-    background-color: #01fb9f9d;
-    color: #002a30;
+.form-button-cancel-editoraform:hover {
+    background-color: #ea24249d;
 }
 
-.form-button-cancel:active {
-    background-color: #01fb9f9d;
-    color: #002a30;
-}
-
-/* Mensagem de erro */
-.error-message {
-    color: #d32f2f;
-    background-color: #fdecea;
-    border: 1px solid #d32f2f;
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
-    font-weight: bold;
-    margin: 10px 0;
-    opacity: 0;
-    animation: fadeIn 1s forwards;
-}
-
-/* Mensagem de sucesso */
-.success-message {
-    color: #2e7d32;
-    background-color: #e8f5e9;
-    border: 1px solid #2e7d32;
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
-    font-weight: bold;
-    margin: 10px 0;
-    opacity: 0;
-    animation: fadeIn 1s forwards;
-}
-
-/* Mensagem de carregamento */
-.loading-message {
-    color: #1976d2;
-    font-size: 1.2em;
-    font-weight: bold;
-    margin: 10px 0;
-    opacity: 0;
-    animation: fadeIn 1s forwards;
-}
-
-/* Animação fade-in */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+.form-button-cancel-editoraform:active {
+    background-color: #ea24249d;
 }

@@ -8,7 +8,7 @@ body {
     color: var(--text-color);
 }
 
-.emprestimoform-container {
+.alunoform-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -17,7 +17,7 @@ body {
     padding: 20px;
 }
 
-.form-container-emprestimoform {
+.form-container-alunoform {
     width: 100%;
     max-width: 600px;
     padding: 30px;
@@ -26,39 +26,24 @@ body {
     box-shadow: 0px 4px 10px rgba(228, 222, 222, 0.1);
 }
 
-.form-title-emprestimoform {
+.form-title-alunoform {
     font-size: 2rem;
     color: var(--background-color);
     text-align: center;
 }
 
-.form-group-emprestimoform {
+.form-group-alunoform {
     margin-bottom: 15px;
 }
 
-.form-group-emprestimoform select {
-    padding: 10px;
-    font-size: 1rem;
-    border: 2px solid #002a30;
-    border-radius: 4px;
-    width: 200px;
-    background-color: #f2f2f2;
-    color: #002a30;
-}
-
-.form-group-emprestimoform label {
+.form-group-alunoform label {
     font-size: 1.1rem;
     color: var(--background-color);
+    display: block;
     margin-bottom: 8px;
 }
 
-.livro-option {
-    display: flex;
-    align-items: center;
-    gap: 8px; /* Espaçamento entre o checkbox e o texto */
-}
-
-.form-group-emprestimoform input {
+.form-group-alunoform input {
     width: 100%;
     padding: 10px;
     font-size: 1rem;
@@ -67,13 +52,13 @@ body {
     box-sizing: border-box;
 }
 
-.form-group-emprestimoform input:focus {
+.form-group-alunoform input:focus {
     outline: none;
     border-color: #01fb9f9d;
     box-shadow: 0 0 4px rgba(59, 157, 86, 0.3);
 }
 
-.form-button-emprestimoform {
+.form-button-alunoform {
     background-color: var(--background-color);
     color: var(--text-color);
     padding: 12px 20px;
@@ -86,15 +71,15 @@ body {
     transition: background-color 0.3s;
 }
 
-.form-button-emprestimoform:hover {
+.form-button-alunoform:hover {
     background-color: #01fb9f9d;
 }
 
-.form-button-emprestimoform:active {
+.form-button-alunoform:active {
     background-color: #01fb9f9d;
 }
 
-.form-button-cancelar-emprestimoform {
+.form-button-cancelar-alunoform {
     background-color: var(--background-color);
     color: var(--text-color);
     padding: 12px 20px;
@@ -107,10 +92,10 @@ body {
     transition: background-color 0.3s;
 }
 
-.form-button-cancelar-emprestimoform:hover {
+.form-button-cancelar-alunoform:hover {
     background-color: #ea24249d;
 }
 
-.form-button-cancelar-emprestimoform:active {
+.form-button-cancelar-alunoform:active {
     background-color: #ea24249d;
 }

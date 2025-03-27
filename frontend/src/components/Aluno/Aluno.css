@@ -1,34 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+* {
+    font-family: 'Inter';
+}
+
+body {
+    background-color: var(--background-color);
+}
+
 .aluno-container {
     max-width: 1200px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #f4f9f4;
+    background-color: var(--text-color);
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 100px;
+    margin-top: 200px;
 }
 
 .aluno-title {
-    font-size: 2rem;
-    color: #3b9d56;
+    font-size: 1.8rem;
+    color: var(--background-color);
     margin-bottom: 20px;
+    font-family: sans-serif;
 }
 
 .aluno-btn-new {
-    background-color: #3b9d56;
-    color: white;
+    background-color: var(--background-color);
+    color: var(--text-color);
     border: none;
     padding: 10px 15px;
-    font-size: 1rem;
+    font-size: 1.1rem;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s;
     margin-bottom: 15px;
     float: right;
 }
 
 .aluno-btn-new:hover {
-    background-color: #2a7b41;
+    background-color: #01fb9f9d;
 }
 
 .aluno-filter {
@@ -41,14 +49,33 @@
 .aluno-filter input {
     padding: 10px;
     font-size: 1rem;
-    border: 1px solid #ccc;
+    border: 2px solid #002a30;
     border-radius: 4px;
     width: 250px;
+    background-color: #ffffff;
+    color: var(--text-color);
+}
+
+.aluno-filter input:focus {
+    outline: none;
+    border-color: #01fb9f9d;
+    box-shadow: 0 0 4px rgba(59, 157, 86, 0.3);
 }
 
 .aluno-filter span {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--background-color);
+}
+
+.aluno-filter button {
+    background-color: #ffffff;
+    color: var(--background-color);
+    padding: 10px 15px;
     font-size: 1rem;
-    color: #555;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
 .aluno-list {
@@ -57,20 +84,19 @@
 
 .aluno-table {
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
 }
 
 .aluno-table th,
 .aluno-table td {
-    padding: 10px;
-    border: 1px solid #ddd;
+    padding: 8px;
+    border: 1px solid var(--background-color);
     text-align: left;
+    color: var(--background-color);
 }
 
 .aluno-table th {
-    background-color: #3b9d56;
-    color: white;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 .aluno-btn-edit,
@@ -83,23 +109,23 @@
 }
 
 .aluno-btn-edit {
-    background-color: #f1c40f;
-    color: white;
+    background-color: var(--background-color);
+    color: var(--text-color);
     border: none;
 }
 
 .aluno-btn-edit:hover {
-    background-color: #f39c12;
+    background-color: #01fb9f9d;
 }
 
 .aluno-btn-delete {
-    background-color: #e74c3c;
-    color: white;
+    background-color: var(--background-color);
+    color: var(--text-color);
     border: none;
 }
 
 .aluno-btn-delete:hover {
-    background-color: #c0392b;
+    background-color: #d32f2f;
 }
 
 .aluno-pagination {
@@ -109,46 +135,56 @@
     gap: 10px;
 }
 
-.aluno-pagination select {
-    padding: 5px;
+.pagination-info {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.aluno-pagination p,
+label {
+    font-size: 20px;
+    color: var(--background-color);
+    font-weight: 500;
+}
+
+.pagination-info span {
+    font-size: 20px;
+    color: var(--background-color);
+    font-weight: 500;
+}
+
+.pagination-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.pagination-buttons button {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: none;
+    padding: 8px 15px;
+    font-size: 1.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.pagination-buttons button:hover {
+    background-color: #01fb9f9d;
+}
+
+.pagination-numbers button {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: 1px solid #002a30;
+    padding: 8px;
     font-size: 1rem;
     border-radius: 4px;
-    border: 1px solid #ccc;
+    cursor: pointer;
+    margin: 0 5px;
 }
 
-/* Mensagens de erro e sucesso */
-.error-message {
-    color: #d32f2f;
-    background-color: #fdecea;
-    border: 1px solid #d32f2f;
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
-    font-weight: bold;
-    margin: 10px 0;
-    opacity: 0;
-    animation: fadeIn 1s forwards;
-}
-
-.success-message {
-    color: #2e7d32;
-    background-color: #e8f5e9;
-    border: 1px solid #2e7d32;
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
-    font-weight: bold;
-    margin: 10px 0;
-    opacity: 0;
-    animation: fadeIn 1s forwards;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
+.pagination-numbers button:hover {
+    background-color: var(--background-color);
+    color: var(--text-color);
 }

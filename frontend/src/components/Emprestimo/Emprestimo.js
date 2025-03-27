@@ -120,6 +120,16 @@ const Emprestimo = () => {
                     </select>
                 </label>
             </div>
+            <div className="pagination-info">
+                <span>
+                    Mostrando de {((page - 1) * limit) + 1} até {Math.min(page * limit, totalRecords)} de {totalRecords} registros
+                </span>
+                <div className="pagination-buttons">
+                    <button onClick={() => setPage(Math.max(page - 1, 1))}>Anterior</button>
+                    <span>Página {page}</span>
+                    <button onClick={() => setPage(Math.min(page + 1, Math.ceil(totalRecords / limit)))}>Próxima</button>
+                </div>
+            </div>
         </div>
     );
 };

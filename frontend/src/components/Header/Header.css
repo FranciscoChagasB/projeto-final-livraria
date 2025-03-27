@@ -1,25 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+
 .header-container {
-    background-color: #002a30;
+    background-color: var(--div-form-login);
     padding: 10px 20px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     width: 100%;
     position: fixed;
     top: 0;
     left: 0;
     height: 60px;
     z-index: 1000;
-}
-
-.logo h1 {
-    color: #ffffff;
-    font-size: 22px;
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    margin-left: 20px;
 }
 
 .nav-content {
@@ -31,6 +23,14 @@
     margin: 0 auto;
 }
 
+
+.logo h1{ 
+    color: var(--background-color);
+    font-size: 22px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+}
+/* Navbar */
 .nav ul {
     list-style: none;
     padding: 0;
@@ -41,22 +41,19 @@
 
 .nav ul li {
     margin: 10px;
-    display: flex;
-    align-items: center;
 }
 
 .nav ul li a {
-    color: white;
+    color: var(--background-color);
     text-decoration: none;
     font-size: 18px;
     padding: 10px;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease;
     font-family: "Poppins", sans-serif;
     font-weight: 400;
-    display: inline-block;
 }
 
-.nav ul li:hover > a {
+.nav ul li a:hover {
     background-color: #a6dbc8bd;
     color: #f0f0f0fb;
     font-size: 20px;
@@ -67,158 +64,52 @@
 .profile-container {
     position: relative;
     display: flex;
-    align-items: center;
-    margin-right: 20px;
+    align-content: center;
 }
 
 .profileButton {
+    color: var(--text-color);
     background-color: transparent;
-    color: white;
     border: none;
     font-size: 22px;
     cursor: pointer;
-    margin-top: 12px;
 }
 
+.profileButton{
+    margin-top: 12px;
+}
 .profileButton:hover {
     opacity: 0.8;
 }
 
-.profile-container .dropdown-menu {
+/* Dropdown do perfil */
+.dropdown-menu {
     position: absolute;
     top: 40px;
     right: 0;
-    background-color: rgb(255, 255, 255);
+    background-color: var(--text-color);
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     width: 140px;
     padding: 8px 0;
     align-items: center;
-    margin-top: 15px;
-    z-index: 1000;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
 }
 
-.dropdown-menu a, .dropdown-menu button {
+.dropdown-menu a {
     display: block;
     font-size: 20px;
     text-decoration: none;
-    color: #273523;
+    color: var(--background-color);
     font-weight: bold;
-    padding: 8px;
-    border-radius: 8px;
-    text-align: center;
-    background-color: #ffffff;
-    border: none;
-    cursor: pointer;
 }
 
-.dropdown-menu button:hover,
-.dropdown-menu a:hover {
-    background-color: #a6dbc8bd;
-}
-
-/* Ícone do menu hambúrguer (somente mobile) */
-.hamburger-menu {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-    margin-left: 10px;
-}
-
-.hamburger-menu div {
-    width: 25px;
-    height: 1.5px;
-    background-color: white;
-    margin: 5px 0;
-}
-
-/* Estilos do menu mobile */
-.mobile-nav {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 70%;
-    max-height: 50vh;
-    background-color: #314c53;
-    flex-direction: column;
-    padding: 20px 0;
-    border-bottom-right-radius: 8px;
-    z-index: 999;
-}
-
-.mobile-nav.open {
-    display: flex;
-}
-
-.mobile-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.mobile-nav ul li a {
-    color: white;
+.dropdown-menu button {
+    display: block;
     text-decoration: none;
-    font-size: 30px;
-    padding: 20px;
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-}
-
-/* Responsividade */
-@media screen and (max-width: 768px) {
-    .header-container {
-        height: 80px;
-    }
-
-    .header-container .logo {
-        font-size: 14px;
-        margin-left: 10px;
-    }
-
-    .nav-content {
-        display: none;
-    }
-
-    .hamburger-menu {
-        display: flex;
-    }
-
-    .profile-container {
-        margin-right: 10px;
-    }
-
-    .mobile-nav {
-        width: 100%;
-        padding: 20px 0;
-    }
-
-    .mobile-nav ul li a {
-        font-size: 24px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .header-container {
-        height: 70px;
-    }
-
-    .header-container .logo {
-        font-size: 12px;
-    }
-
-    .mobile-nav ul li a {
-        font-size: 20px;
-    }
-
-    .hamburger-menu div {
-        width: 20px;
-        height: 1.5px;
-    }
+    color: var(--text-color);
+    background-color: var(--background-color);
+    font-weight: bold;
+    margin-top: 10px;
 }

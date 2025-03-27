@@ -54,7 +54,7 @@ const Profile = () => {
     );
 
     return (
-        <div className="container">
+        <div className="container-profile">
             <div className="user-profile-container">
                 <h1 tabIndex="-1">Perfil</h1>
 

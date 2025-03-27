@@ -62,22 +62,22 @@ const EmprestimoForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
+
         if (!formData.alunoId || formData.livros.length === 0 || !formData.dataFim) {
             setErrorMessage("Todos os campos são obrigatórios.");
             clearMessages();
             return;
         }
-    
+
         try {
             const emprestimoData = {
                 alunoId: parseInt(formData.alunoId),
                 livros: formData.livros,
                 dataFim: formData.dataFim
             };
-    
+
             console.log(emprestimoData);
-    
+
             if (isEditing) {
                 await updateEmprestimo(location.state.id, emprestimoData);
                 setSuccessMessage("Empréstimo atualizado com sucesso!");
@@ -85,7 +85,7 @@ const EmprestimoForm = () => {
                 await createEmprestimo(emprestimoData);
                 setSuccessMessage("Empréstimo cadastrado com sucesso!");
             }
-    
+
             clearMessages();
             setTimeout(() => {
                 fetchLivrosDisponiveis(); // Recarregar a lista de livros disponíveis após o empréstimo
@@ -105,57 +105,59 @@ const EmprestimoForm = () => {
     };
 
     return (
-        <div className="form-container">
-            <h2 className="form-title">{isEditing ? "Editar Empréstimo" : "Cadastrar Empréstimo"}</h2>
+        <div className="emprestimoform-container">
+            <div className="form-container-emprestimoform">
+                <h2 className="form-title-emprestimoform">{isEditing ? "Editar Empréstimo" : "Cadastrar Empréstimo"}</h2>
 
-            {errorMessage && <p className="error-message">{errorMessage}</p>}
-            {successMessage && <p className="success-message">{successMessage}</p>}
+                {errorMessage && <p className="error-message">{errorMessage}</p>}
+                {successMessage && <p className="success-message">{successMessage}</p>}
 
-            <form onSubmit={handleSubmit}>
-                <div className="form-group-alunos">
-                    <label htmlFor="alunoId">Aluno</label>
-                    <select id="alunoId" name="alunoId" value={formData.alunoId} onChange={handleChange}>
-                        <option value="">Selecione um aluno</option>
-                        {alunos.map(aluno => (
-                            <option key={aluno.id} value={aluno.id}>{aluno.nome}</option>
-                        ))}
-                    </select>
-                </div>
-
-                <div className="form-group-livros">
-                    <label htmlFor="livros">Livros</label>
-                    <div className="livros-options">
-                        {livros.map(livro => (
-                            <div key={livro.id} className="livro-option">
-                                <input 
-                                    type="checkbox" 
-                                    id={`livro-${livro.id}`} 
-                                    value={livro.id}
-                                    checked={formData.livros.includes(livro.id)} 
-                                    onChange={() => handleLivrosChange(livro.id)} 
-                                />
-                                <label htmlFor={`livro-${livro.id}`}>{livro.titulo}</label>
-                            </div>
-                        ))}
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group-emprestimoform">
+                        <label htmlFor="alunoId">Aluno</label>
+                        <select id="alunoId" name="alunoId" value={formData.alunoId} onChange={handleChange}>
+                            <option value="">Selecione um aluno</option>
+                            {alunos.map(aluno => (
+                                <option key={aluno.id} value={aluno.id}>{aluno.nome}</option>
+                            ))}
+                        </select>
                     </div>
-                </div>
 
-                <div className="form-group">
-                    <label htmlFor="dataFim">Data de Devolução</label>
-                    <input
-                        type="date"
-                        id="dataFim"
-                        name="dataFim"
-                        value={formData.dataFim}
-                        onChange={handleChange}
-                    />
-                </div>
+                    <div className="form-group-emprestimoform">
+                        <label htmlFor="livros">Livros</label>
+                        <div className="livros-options">
+                            {livros.map(livro => (
+                                <div key={livro.id} className="livro-option">
+                                    <input
+                                        type="checkbox"
+                                        id={`livro-${livro.id}`}
+                                        value={livro.id}
+                                        checked={formData.livros.includes(livro.id)}
+                                        onChange={() => handleLivrosChange(livro.id)}
+                                    />
+                                    <label htmlFor={`livro-${livro.id}`}>{livro.titulo}</label>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
 
-                <button type="submit" className="form-button">
-                    {isEditing ? "Atualizar" : "Cadastrar"}
-                </button>
-                <button className="form-button-cancelar" onClick={handleBack}>Cancelar</button>
-            </form>
+                    <div className="form-group-emprestimoform">
+                        <label htmlFor="dataFim">Data de Devolução</label>
+                        <input
+                            type="date"
+                            id="dataFim"
+                            name="dataFim"
+                            value={formData.dataFim}
+                            onChange={handleChange}
+                        />
+                    </div>
+
+                    <button type="submit" className="form-button-emprestimoform">
+                        {isEditing ? "Atualizar" : "Cadastrar"}
+                    </button>
+                    <button className="form-button-cancelar-emprestimoform" onClick={handleBack}>Cancelar</button>
+                </form>
+            </div>
         </div>
     );
 };

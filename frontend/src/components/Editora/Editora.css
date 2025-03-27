@@ -1,33 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-* {
+*{
     font-family: 'Inter';
 }
-
 body {
-    background-color: #f5f5f5;
+    background-color: var(--background-color);
 }
 
 .editora-container {
     max-width: 1200px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #002a30ea;
+    background-color: var(--text-color);
     border-radius: 8px;
     margin-top: 200px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .editora-title {
     font-size: 1.8rem;
-    color: #f2f2f2;
+    color: var(--background-color);
     margin-bottom: 20px;
     font-family: sans-serif;
 }
 
 .editora-btn-new {
-    background-color: #f5f5f5;
-    color: #002a30;
+    background-color: var(--background-color);
+    color: var(--text-color);
     border: none;
     padding: 10px 15px;
     font-size: 1.1rem;
@@ -35,7 +32,6 @@ body {
     cursor: pointer;
     margin-bottom: 15px;
     float: right;
-    transition: background-color 0.3s;
 }
 
 .editora-btn-new:hover {
@@ -44,7 +40,6 @@ body {
 
 .editora-filter {
     display: flex;
-    flex-wrap: wrap;
     gap: 10px;
     margin-bottom: 20px;
     align-items: center;
@@ -56,8 +51,9 @@ body {
     border: 2px solid #002a30;
     border-radius: 4px;
     width: 250px;
-    background-color: #f2f2f2;
-    color: #002a30;
+    background-color: #ffffff;
+    color: var(--text-color);
+
 }
 
 .editora-filter input:focus {
@@ -66,43 +62,32 @@ body {
     box-shadow: 0 0 4px rgba(59, 157, 86, 0.3);
 }
 
+
 .editora-filter span {
     font-size: 18px;
     font-weight: 500;
-    color: #f2f2f2;
-}
-
-.editora-filter button {
-    background-color: #f2f2f2;
-    color: #000000;
-    padding: 10px 15px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    color: var(--background-color);
 }
 
 .editora-list {
     margin-top: 20px;
-    overflow-x: auto;
 }
 
 .editora-table {
     width: 100%;
-    border-collapse: collapse;
 }
 
 .editora-table th,
 .editora-table td {
     padding: 8px;
-    border: 1px solid #f5f5f5;
+    border: 1px solid var(--background-color);
     text-align: left;
-    color: #f2f2f2;
+    color: var(--background-color);
 }
 
 .editora-table th {
-    background-color: #f5f5f5;
-    color: #002a30e7;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 .editora-btn-edit,
@@ -112,12 +97,11 @@ body {
     border-radius: 4px;
     cursor: pointer;
     margin-right: 10px;
-    transition: background-color 0.3s;
 }
 
 .editora-btn-edit {
-    background-color: #ffffff;
-    color: #000000;
+    background-color: var(--background-color);
+    color: var(--text-color);
     border: none;
 }
 
@@ -126,65 +110,67 @@ body {
 }
 
 .editora-btn-delete {
-    background-color: #ffffff;
-    color: #000000;
+    background-color: var(--background-color);
+    color: var(--text-color);
     border: none;
 }
 
 .editora-btn-delete:hover {
-    background-color: #01fb9f9d;
+    background-color: #d32f2f;
 }
 
 .editora-pagination {
     margin-top: 20px;
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     gap: 10px;
 }
 
-.pagination-info {
+.pagination-info-editora {
     margin-top: 20px;
     text-align: center;
 }
 
-.editora-pagination p,
-label {
+.editora-pagination {
     font-size: 20px;
-    color: #f2f2f2;
+    color: var(--background-color);
     font-weight: 500;
 }
 
-.pagination-info span {
+.label-editora-pagination {
+    color: var(--background-color);
+}
+
+.pagination-info-editora span {
     font-size: 20px;
-    color: #f2f2f2;
+    color: var(--background-color);
     font-weight: 500;
 }
 
-.pagination-buttons {
+.pagination-buttons-editora {
     display: flex;
     justify-content: center;
     gap: 10px;
 }
 
-.pagination-buttons button {
-    background-color: #f5f5f5;
-    color: #002a30;
+.pagination-buttons-editora button {
+    background-color: var(--background-color);
+    color: var(--text-color);
     border: none;
     padding: 8px 15px;
-    font-size: 1.2rem;
+    font-size: 1.2rem; 
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s;
 }
 
-.pagination-buttons button:hover {
+.pagination-buttons-editora button:hover {
     background-color: #01fb9f9d;
+    
 }
 
 .pagination-numbers button {
-    background-color: #ffffff;
-    color: #000000;
+    background-color: var(--background-color);
+    color: var(--text-color);
     border: 1px solid #002a30;
     padding: 8px;
     font-size: 1rem;
@@ -194,43 +180,6 @@ label {
 }
 
 .pagination-numbers button:hover {
-    background-color: #d9d9d9;
-    color: #000000;
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-    .editora-container {
-        padding: 15px;
-        margin: 15px;
-        margin-top: 100px;
-    }
-
-    .editora-title {
-        font-size: 1.5rem;
-    }
-
-    .editora-btn-new {
-        width: 100%;
-        float: none;
-        text-align: center;
-    }
-
-    .editora-filter {
-        flex-direction: column;
-    }
-
-    .editora-filter input,
-    .editora-filter button {
-        width: 100%;
-    }
-}
-
-@media (max-width: 480px) {
-
-    .editora-table th,
-    .editora-table td {
-        font-size: 0.9rem;
-        padding: 8px;
-    }
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
