@@ -14,63 +14,64 @@ generator client {
 }
 
 model User {
-  id       Int @id @default(autoincrement())
-  name     String
-  cpf      String @unique
-  email    String @unique
-  password String
+  id        Int      @id @default(autoincrement())
+  name      String
+  cpf       String   @unique
+  email     String   @unique
+  password  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Editora {
-  id           Int  @id @default(autoincrement())
+  id           Int      @id @default(autoincrement())
   nome         String
-  emailContato String  @unique
+  emailContato String   @unique
   telefone     String?
-  cnpj         String  @unique
+  cnpj         String   @unique
   livros       Livro[]  @relation("EditoraLivros")
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
 
 model Aluno {
-  id          Int       @id @default(autoincrement())
+  id          Int          @id @default(autoincrement())
   nome        String
-  email       String    @unique
+  email       String       @unique
   telefone    String?
-  matricula   String    @unique
+  matricula   String       @unique
   emprestimos Emprestimo[]
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
 }
 
 model Emprestimo {
-  id         Int      @id @default(autoincrement())
+  id         Int               @id @default(autoincrement())
   alunoId    Int
-  aluno      Aluno    @relation(fields: [alunoId], references: [id])
+  aluno      Aluno             @relation(fields: [alunoId], references: [id])
   livros     EmprestimoLivro[]
-  dataInicio DateTime @default(now())
+  dataInicio DateTime          @default(now())
   dataFim    DateTime
-  devolvido  Boolean  @default(false)
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  devolvido  Boolean           @default(false)
+  createdAt  DateTime          @default(now())
+  updatedAt  DateTime          @updatedAt
 }
 
 model Livro {
-  id           Int      @id @default(autoincrement())
+  id           Int               @id @default(autoincrement())
   titulo       String
   autor        String
-  isbn         String   @unique
+  isbn         String            @unique
   ano          Int
-  dataInserido DateTime @default(now())
-  isDisponivel Boolean  @default(true)
+  dataInserido DateTime          @default(now())
+  isDisponivel Boolean           @default(true)
   genero       String
   editoraId    Int
-  editora      Editora  @relation("EditoraLivros", fields: [editoraId], references: [id])
+  editora      Editora           @relation("EditoraLivros", fields: [editoraId], references: [id])
   emprestimos  EmprestimoLivro[]
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+  capa         Bytes?
 }
 
 model EmprestimoLivro {

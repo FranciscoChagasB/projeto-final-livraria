@@ -12,9 +12,10 @@ const LivroForm = () => {
         isbn: "",
         editoraId: "",
         ano: "",
-        genero: ""
+        genero: "",
     });
 
+    const [capa, setCapa] = useState(null); // Estado para armazenar a imagem da capa
     const [editoras, setEditoras] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
@@ -37,7 +38,6 @@ const LivroForm = () => {
 
         fetchEditoras();
 
-        // Verifica se está editando
         if (location.state) {
             setIsEditing(true);
             setFormData(location.state);
@@ -45,7 +45,7 @@ const LivroForm = () => {
 
         if (isbnInputRef.current) {
             IMask(isbnInputRef.current, {
-                mask: "000-0-00-000000-0", // Máscara para ISBN
+                mask: "000-0-00-000000-0",
             });
         }
     }, [location.state]);
@@ -54,8 +54,12 @@ const LivroForm = () => {
         const { name, value } = e.target;
         setFormData({
             ...formData,
-            [name]: name === "editoraId" || name === "ano" ? Number(value) : value
+            [name]: name === "editoraId" || name === "ano" ? Number(value) : value,
         });
+    };
+
+    const handleCapaChange = (e) => {
+        setCapa(e.target.files[0]); // Armazena a capa selecionada
     };
 
     const handleSubmit = async (e) => {
@@ -63,20 +67,27 @@ const LivroForm = () => {
 
         const { titulo, isbn, ano, genero, editoraId } = formData;
 
-        console.log("FormData enviado: ", formData);
-        
         if (!titulo || !isbn || !ano || !genero || !editoraId) {
             setErrorMessage("Todos os campos obrigatórios devem ser preenchidos.");
             clearMessages();
             return;
         }
 
+        const data = new FormData();
+        data.append("titulo", titulo);
+        data.append("autor", formData.autor);
+        data.append("isbn", isbn);
+        data.append("editoraId", editoraId);
+        data.append("ano", ano);
+        data.append("genero", genero);
+        if (capa) data.append("capa", capa); // Adiciona a capa ao FormData
+
         try {
             if (isEditing) {
-                await updateLivro(formData.id, formData);
+                await updateLivro(formData.id, data);
                 setSuccessMessage("Livro atualizado com sucesso!");
             } else {
-                await createLivro(formData);
+                await createLivro(data);
                 setSuccessMessage("Livro cadastrado com sucesso!");
             }
             clearMessages();
@@ -101,7 +112,7 @@ const LivroForm = () => {
             {errorMessage && <p className="error-message">{errorMessage}</p>}
             {successMessage && <p className="success-message">{successMessage}</p>}
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} encType="multipart/form-data">
                 <div className="form-group">
                     <label htmlFor="titulo">Título</label>
                     <input
@@ -183,6 +194,17 @@ const LivroForm = () => {
                             </option>
                         ))}
                     </select>
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="capa">Capa do Livro</label>
+                    <input
+                        type="file"
+                        id="capa"
+                        name="capa"
+                        accept="image/*"
+                        onChange={handleCapaChange}
+                    />
                 </div>
 
                 <button type="submit" className="form-button">

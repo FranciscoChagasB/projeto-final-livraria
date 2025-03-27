@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { getLivrosByFilters, deleteLivro } from "../../services/livrosService";
+import { getLivrosByFilters, deleteLivro, createLivro } from "../../services/livrosService";
 import { getEditoras } from "../../services/editorasService";
 import { useNavigate } from "react-router-dom";
 import IMask from "imask";
@@ -15,6 +15,7 @@ const Livro = () => {
     const [totalRecords, setTotalRecords] = useState(0);
     const [errorMessage, setErrorMessage] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
+    const [capa, setCapa] = useState(null);
     const isbnInputRef = useRef(null);
     const navigate = useNavigate();
 
@@ -68,15 +69,34 @@ const Livro = () => {
         }
     };
 
-    const handleLimitChange = (e) => {
-        setLimit(e.target.value);
-        setPage(1);
-    };
-
     const handleFilterChange = (e) => {
         const { name, value } = e.target;
         setFilters(prevFilters => ({ ...prevFilters, [name]: value }));
+    };
 
+    const handleCapaChange = (e) => {
+        setCapa(e.target.files[0]);
+    };
+
+    const handleCreateLivro = async (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append("titulo", filters.titulo);
+        formData.append("isbn", filters.isbn);
+        formData.append("genero", filters.genero);
+        formData.append("isDisponivel", filters.isDisponivel);
+        formData.append("editoraId", filters.editoraId);
+        if (capa) formData.append("capa", capa);
+        
+        try {
+            await createLivro(formData);
+            setSuccessMessage("Livro cadastrado com sucesso!");
+            fetchLivros();
+        } catch (error) {
+            setErrorMessage("Erro ao cadastrar livro.");
+        } finally {
+            clearMessages();
+        }
     };
 
     const clearMessages = () => {
@@ -90,75 +110,18 @@ const Livro = () => {
         <div className="livro-container">
             <h2 className="livro-title">Relação de Livros</h2>
             <button className="livro-btn-new" onClick={() => navigate("/livrosform")}>Novo Registro</button>
-
-            {errorMessage && <p className="error-message">{errorMessage}</p>}
-            {successMessage && <p className="success-message">{successMessage}</p>}
-
-            <div className="livro-filter">
-                <span>Pesquisar</span>
-                <input type="text" name="titulo" placeholder="Buscar por título" value={filters.titulo} onChange={handleFilterChange} />
-                <input type="text" ref={isbnInputRef} name="isbn" placeholder="Buscar por ISBN" value={filters.isbn} onChange={handleFilterChange} />
-                <select name="genero" value={filters.genero} onChange={handleFilterChange}>
+            <form onSubmit={handleCreateLivro}>
+                <input type="text" name="titulo" placeholder="Título" value={filters.titulo} onChange={handleFilterChange} required />
+                <input type="text" name="isbn" placeholder="ISBN" value={filters.isbn} onChange={handleFilterChange} required />
+                <select name="genero" value={filters.genero} onChange={handleFilterChange} required>
                     <option value="">Selecione um Gênero</option>
                     {Object.values(GenerosEnum).map((genero) => (
                         <option key={genero} value={genero}>{genero.replace("_", " ")}</option>
                     ))}
                 </select>
-                <select name="isDisponivel" value={filters.isDisponivel} onChange={handleFilterChange}>
-                    <option value="">Disponibilidade</option>
-                    <option value="true">Disponível</option>
-                    <option value="false">Indisponível</option>
-                </select>
-                <select name="editoraId" value={filters.editoraId} onChange={handleFilterChange}>
-                    <option value="">Selecione uma Editora</option>
-                    {editoras.map((editora) => (
-                        <option key={editora.id} value={editora.id}>{editora.nome}</option>
-                    ))}
-                </select>
-            </div>
-
-            <div className="livro-list">
-                <table className="livro-table">
-                    <thead>
-                        <tr>
-                            <th>Título</th>
-                            <th>ISBN</th>
-                            <th>Disponível</th>
-                            <th>Editora</th>
-                            <th>Gênero</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {livros.map((livro) => (
-                            <tr key={livro.id}>
-                                <td>{livro.titulo}</td>
-                                <td>{livro.isbn}</td>
-                                <td>{livro.isDisponivel ? "Sim" : "Não"}</td>
-                                <td>{livro.editora.nome}</td>
-                                <td>{livro.genero ? livro.genero.charAt(0).toUpperCase() + livro.genero.slice(1) : "Não informado"}</td>
-                                <td>
-                                    <button className="livro-btn-edit" onClick={() => navigate("/livrosform", { state: livro })}>Editar</button>
-                                    <button className="livro-btn-delete" onClick={() => handleDelete(livro.id)}>Excluir</button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-
-            <div className="livro-pagination">
-                <p>Total: {totalRecords}</p>
-                <label>
-                    Registros por página:
-                    <select value={limit} onChange={handleLimitChange}>
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
-                    </select>
-                </label>
-            </div>
+                <input type="file" accept="image/*" onChange={handleCapaChange} />
+                <button type="submit">Cadastrar Livro</button>
+            </form>
         </div>
     );
 };

@@ -1,9 +1,12 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const multer = require('multer');
+const upload = multer({ storage: multer.memoryStorage() }); // Armazena a imagem na memória
 
 // Criar um novo livro
 async function createLivro(req, res) {
     const { titulo, autor, isbn, ano, genero, isDisponivel, editoraId } = req.body;
+    const capa = req.file ? req.file.buffer : null; // Obtém a imagem do request
 
     if (!titulo || !isbn || !ano || !genero || !editoraId) {
         return res.status(400).json({ message: 'Título, ISBN, ano, gênero e editoraId são obrigatórios' });
@@ -11,7 +14,7 @@ async function createLivro(req, res) {
 
     try {
         const newLivro = await prisma.livro.create({
-            data: { titulo, autor, isbn, ano, genero, isDisponivel, editoraId },
+            data: { titulo, autor, isbn, ano, genero, isDisponivel, editoraId, capa },
         });
 
         return res.status(201).json(newLivro);
