@@ -52,7 +52,7 @@ const Livro = () => {
 
     useEffect(() => {
         if (isbnInputRef.current) {
-            IMask(isbnInputRef.current, { mask: "000-0-00-000000-0" });
+            IMask(isbnInputRef.current, { mask: "0000000000000" });
         }
     }, []);
 

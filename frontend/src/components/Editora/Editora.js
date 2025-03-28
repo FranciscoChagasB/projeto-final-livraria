@@ -88,33 +88,35 @@ const Editora = () => {
             </div>
 
             <div className="editora-list">
-                <table className="editora-table">
-                    <thead>
-                        <tr>
-                            <th>Nome</th>
-                            <th>Email</th>
-                            <th>Telefone</th>
-                            <th>CNPJ</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {editoras.map((editora) => (
-                            <tr key={editora.id}>
-                                <td>{editora.nome}</td>
-                                <td>{editora.emailContato}</td>
-                                <td>{editora.telefone || "N/A"}</td>
-                                <td>{editora.cnpj}</td>
-                                <td>
-                                    <Link to={`/editoraform/${editora.id}`}>
-                                        <button className="editora-btn-edit">Editar</button>
-                                    </Link>
-                                    <button className="editora-btn-delete" onClick={() => handleDelete(editora.id)}>Excluir</button>
-                                </td>
+                <div className="editora-table-wrapper">
+                    <table className="editora-table">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Email</th>
+                                <th>Telefone</th>
+                                <th>CNPJ</th>
+                                <th>Ações</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {editoras.map((editora) => (
+                                <tr key={editora.id}>
+                                    <td>{editora.nome}</td>
+                                    <td>{editora.emailContato}</td>
+                                    <td>{editora.telefone || "N/A"}</td>
+                                    <td>{editora.cnpj}</td>
+                                    <td>
+                                        <Link to={`/editoraform/${editora.id}`}>
+                                            <button className="editora-btn-edit">Editar</button>
+                                        </Link>
+                                        <button className="editora-btn-delete" onClick={() => handleDelete(editora.id)}>Excluir</button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             <div className="editora-pagination">

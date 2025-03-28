@@ -15,7 +15,16 @@ const Emprestimo = () => {
 
     const fetchEmprestimos = useCallback(async () => {
         try {
-            const data = await getEmprestimosByFilters(filters, page, limit);
+            let data;
+            
+            // Verifica se o filtro devolvido está vazio e remove antes de fazer a requisição
+            if (filters.devolvido === "") {
+                const { devolvido, ...otherFilters } = filters;
+                data = await getEmprestimosByFilters(otherFilters, page, limit);
+            } else {
+                data = await getEmprestimosByFilters(filters, page, limit);
+            }
+    
             setEmprestimos(data.data);
             setTotalRecords(data.total);
         } catch (error) {
@@ -29,6 +38,9 @@ const Emprestimo = () => {
     }, [fetchEmprestimos, page, filters, limit]);
 
     const handleDelete = async (id) => {
+        const confirmDelete = window.confirm("Tem certeza que deseja excluir este empréstimo?");
+        if (!confirmDelete) return;
+
         try {
             await deleteEmprestimo(id);
             setSuccessMessage("Empréstimo excluído com sucesso!");
@@ -47,7 +59,17 @@ const Emprestimo = () => {
 
     const handleFilterChange = (e) => {
         const { name, value } = e.target;
-        setFilters(prevFilters => ({ ...prevFilters, [name]: value }));
+        setFilters(prevFilters => {
+            // Atualiza o filtro de acordo com a mudança
+            const updatedFilters = { ...prevFilters, [name]: value };
+
+            // Se devolvido for vazio, removemos o parâmetro
+            if (updatedFilters.devolvido === "") {
+                delete updatedFilters.devolvido;  // Remove o filtro "devolvido"
+            }
+
+            return updatedFilters;
+        });
     };
 
     const clearMessages = () => {
@@ -61,7 +83,12 @@ const Emprestimo = () => {
         <div className="emprestimo-container">
             <h2 className="emprestimo-title">Relação de Empréstimos</h2>
             <button className="emprestimo-btn-new" onClick={() => navigate("/emprestimosform")}>Novo Empréstimo</button>
-
+            <button
+                className="emprestimo-btn-devolver"
+                onClick={() => navigate("/emprestimosdevolver")}
+            >
+                Devolver Empréstimos
+            </button>
             {errorMessage && <p className="error-message">{errorMessage}</p>}
             {successMessage && <p className="success-message">{successMessage}</p>}
 
@@ -69,7 +96,7 @@ const Emprestimo = () => {
                 <span>Pesquisar</span>
                 <input type="text" name="alunoId" placeholder="Buscar por aluno ID" value={filters.alunoId} onChange={handleFilterChange} />
                 <input type="text" name="livroId" placeholder="Buscar por livro ID" value={filters.livroId} onChange={handleFilterChange} />
-                <select name="devolvido" value={filters.devolvido} onChange={handleFilterChange}>
+                <select name="devolvido" value={filters.devolvido || ""} onChange={handleFilterChange}>
                     <option value="">Todos</option>
                     <option value="true">Devolvidos</option>
                     <option value="false">Pendentes</option>

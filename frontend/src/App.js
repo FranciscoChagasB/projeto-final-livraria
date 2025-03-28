@@ -19,7 +19,8 @@ import Emprestimo from './components/Emprestimo/Emprestimo.js';
 import EmprestimoForm from './components/Emprestimo/EmprestimoForm/EmprestimoForm.js';
 import { ThemeProvider } from './components/ThemeToggle/ThemeContext.js';
 import ThemeToggle from './components/ThemeToggle/ThemeToggle.js';
-import './components//ThemeToggle/DarkTheme.css'
+import './components/ThemeToggle/DarkTheme.css'
+import EmprestimoDevolver from './components/Emprestimo/EmprestimoDevolucao.js';
 
 function HeaderWrapper() {
   const location = useLocation();
@@ -71,7 +72,7 @@ function App() {
           <Route path='/emprestimo' element={<ProtectedRoute><Emprestimo /></ProtectedRoute>} />
           <Route path='/emprestimosform' element={<ProtectedRoute><EmprestimoForm /></ProtectedRoute>} />
           <Route path='/emprestimosform/:id' element={<ProtectedRoute><EmprestimoForm /></ProtectedRoute>} />
-
+          <Route path='/emprestimosdevolver' element={<ProtectedRoute><EmprestimoDevolver /></ProtectedRoute>} />
           {/* Rota padrão ou erro 404 */}
           <Route path="*" element={<PageNotFound />} />
         </Routes>

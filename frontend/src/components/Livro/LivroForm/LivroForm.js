@@ -46,7 +46,7 @@ const LivroForm = () => {
 
         if (isbnInputRef.current) {
             IMask(isbnInputRef.current, {
-                mask: "000-0-00-000000-0", // Máscara para ISBN
+                mask: "0000000000000", // Máscara para ISBN
             });
         }
     }, [location.state]);

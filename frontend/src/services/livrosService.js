@@ -2,6 +2,22 @@ import axios from "axios";
 
 const API_URL = "http://localhost:8090";
 
+const GOOGLE_BOOKS_API_URL = 'https://www.googleapis.com/books/v1/volumes';
+
+export const getBookCover = async (isbn) => {
+    try {
+        const response = await axios.get(`${GOOGLE_BOOKS_API_URL}?q=isbn:${isbn}`);
+        const book = response.data.items ? response.data.items[0] : null;
+        if (book && book.volumeInfo.imageLinks) {
+            return book.volumeInfo.imageLinks.thumbnail;
+        }
+        return 'https://placehold.co/200x300'; // Retorna um placeholder caso não haja capa
+    } catch (error) {
+        console.error('Erro ao obter capa do livro', error);
+        return 'https://placehold.co/200x300'; // Retorna um placeholder em caso de erro
+    }
+};
+
 export const getLivrosByFilters = async (filters, page = 1, limit = 5) => {
     try {
         const params = new URLSearchParams({ ...filters, page, limit }).toString();

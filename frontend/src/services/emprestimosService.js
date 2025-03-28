@@ -13,6 +13,28 @@ export const getAllEmprestimos = async (page = 1, limit = 10) => {
     }
 };
 
+// Buscar empréstimos não devolvidos
+export const getEmprestimosNaoDevolvidos = async () => {
+    try {
+        const res = await axios.get(`${API_URL}/api/emprestimos/nao-devolvidos`);
+        return res.data;
+    } catch (error) {
+        console.error("Erro ao buscar empréstimos não devolvidos", error);
+        return [];
+    }
+};
+
+// Devolver um empréstimo (marcar como devolvido)
+export const devolverEmprestimo = async (id) => {
+    try {
+        const res = await axios.put(`${API_URL}/api/emprestimos/devolver/${id}`);
+        return res.data; // Aqui você pode retornar a resposta se necessário
+    } catch (error) {
+        console.error("Erro ao devolver empréstimo", error);
+        throw error; // Lança o erro para que possa ser tratado no componente
+    }
+};
+
 // Buscar empréstimos por filtros com paginação
 export const getEmprestimosByFilters = async (filters, page = 1, limit = 10) => {
     try {

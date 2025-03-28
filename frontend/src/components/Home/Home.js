@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { getLivrosByFilters } from '../../services/livrosService';
+import { getBookCover } from '../../services/livrosService';  // Importa a função para pegar as capas
 import './Home.css';
 
 const Home = () => {
     const [featuredBooks, setFeaturedBooks] = useState([]);
+    const [bookCovers, setBookCovers] = useState({});
     const categories = ["Ficção", "Não-Ficção", "Fantasias", "Romances", "Terror", "Ciência"];
 
     useEffect(() => {
@@ -15,6 +17,15 @@ const Home = () => {
         try {
             const data = await getLivrosByFilters({}, 1, 5);
             setFeaturedBooks(data.data);
+
+            // Buscar as capas dos livros
+            const covers = {};
+            for (const book of data.data) {
+                const coverUrl = await getBookCover(book.isbn);
+                covers[book.isbn] = coverUrl;
+            }
+            setBookCovers(covers);
+
         } catch (error) {
             console.error("Erro ao buscar livros em destaque", error);
         }
@@ -31,7 +42,11 @@ const Home = () => {
                     {featuredBooks.length > 0 ? (
                         featuredBooks.map(book => (
                             <li key={book.id}>
-                                <img src='https://placehold.co/40x40' alt={book.titulo} /> 
+                                <img 
+                                    src={bookCovers[book.isbn] || 'https://placehold.co/200x300'} 
+                                    alt={book.titulo} 
+                                    style={{ width: '100px', height: '150px', objectFit: 'cover' }} 
+                                />
                                 {book.titulo} - {book.autor?.nome || "Autor desconhecido"}
                             </li>
                         ))

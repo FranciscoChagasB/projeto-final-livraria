@@ -1,36 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 .header-container {
-    background-color: var(--div-form-login);
-    padding: 10px 20px;
+    background-color: #002a30;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     width: 100%;
-    position: fixed;
+    position: relative;
     top: 0;
     left: 0;
     height: 60px;
     z-index: 1000;
 }
 
+.header-container .logo {
+    color: white;
+    font-size: 12px;
+    margin-left: 20px;
+    font-family: "Poppins", sans-serif;
+}
+
 .nav-content {
     display: flex;
-    justify-content: space-around;
     align-items: center;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
 }
 
-
-.logo h1{ 
-    color: var(--background-color);
-    font-size: 22px;
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-}
-/* Navbar */
 .nav ul {
     list-style: none;
     padding: 0;
@@ -41,75 +35,275 @@
 
 .nav ul li {
     margin: 10px;
+    display: flex;
+    align-items: center;
 }
 
 .nav ul li a {
-    color: var(--background-color);
+    color: white;
     text-decoration: none;
     font-size: 18px;
     padding: 10px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease; 
     font-family: "Poppins", sans-serif;
     font-weight: 400;
+    display: inline-block;
 }
 
 .nav ul li a:hover {
     background-color: #a6dbc8bd;
     color: #f0f0f0fb;
-    font-size: 20px;
     border-radius: 5px;
-    transition: 0.2s;
+    transform: scale(1.1);
 }
+
 
 .profile-container {
     position: relative;
     display: flex;
-    align-content: center;
+    align-items: center;
+    margin-right: 20px;
+    
 }
 
-.profileButton {
-    color: var(--text-color);
-    background-color: transparent;
+.profile-container button {
+    background: none;
     border: none;
-    font-size: 22px;
     cursor: pointer;
 }
 
-.profileButton{
-    margin-top: 12px;
-}
-.profileButton:hover {
-    opacity: 0.8;
+.profile-container .dropdown-menu {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: #010300;
+    display: none;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 20px;
+    z-index: 1000;
+    min-width: 120px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    gap: 5px;
 }
 
-/* Dropdown do perfil */
-.dropdown-menu {
+.profile-container.active .dropdown-menu {
+    display: flex;
+}
+
+.dropdown-menu a, .dropdown-menu button {
+    color: white;
+    text-decoration: none;
+    background-color: #2e8b57;
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 8px;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-menu button:hover {
+    background-color: #11301e;
+}
+
+.dropdown-menu a:hover {
+    background-color: #11301e;
+}
+
+
+/* Navbar mobile */
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger-menu div {
+    width: 25px;
+    height: 1.5px;
+    background-color: white;
+    margin: 3px 0;
+}
+
+/* Estilos do menu mobile */
+.mobile-nav {
+    display: none;
     position: absolute;
-    top: 40px;
-    right: 0;
-    background-color: var(--text-color);
-    border-radius: 10px;
+    top: 100%;
+    left: 0;
+    width: 70%;
+    max-height: 50vh;
+    background-color: #314c53;
+    flex-direction: column;
+    padding: 20px 0;
+}
+
+.mobile-nav.open {
+    display: flex;
+    width: 60%;
+}
+
+.mobile-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
     display: flex;
     flex-direction: column;
-    width: 140px;
-    padding: 8px 0;
-    align-items: center;
-    margin-top: 20px;
+    gap: 15px;
 }
 
-.dropdown-menu a {
-    display: block;
-    font-size: 20px;
+.mobile-nav ul li a {
+    color: white;
     text-decoration: none;
-    color: var(--background-color);
-    font-weight: bold;
+    font-size: 30px;
+    padding: 20px;
+    margin-top: 60px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
 }
 
-.dropdown-menu button {
-    display: block;
+/* Navbar mobile */
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger-menu div {
+    width: 25px;
+    height: 1.5px;
+    background-color: white;
+    margin: 5px 0;
+}
+
+/* Estilos do menu mobile */
+.mobile-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 70%;
+    max-height: 50vh;
+    background-color: #314c53;
+    flex-direction: column;
+    padding: 20px 0;
+    border-bottom-right-radius: 8px;
+}
+
+.mobile-nav.open {
+    display: flex;
+}
+
+.mobile-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.mobile-nav ul li a {
+    color: white;
     text-decoration: none;
-    color: var(--text-color);
-    background-color: var(--background-color);
-    font-weight: bold;
-    margin-top: 10px;
+    font-size: 30px;
+    padding: 20px;
+    margin-top: 60px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+}
+
+@media screen and (max-width: 768px) {
+    /* Ajustes no cabeçalho */
+    .header-container {
+        height: 80px;
+    }
+
+    .header-container .logo {
+        font-size: 14px;
+        margin-left: 10px;
+    }
+
+    .nav-content {
+        display: none;
+    }
+
+    /* Exibição do Hamburger Menu */
+    .hamburger-menu {
+        display: flex;
+        margin-left: 10px;
+    }
+
+    .nav ul {
+        display: none; /* Ocultar menu normal */
+    }
+
+    .profile-container {
+        margin-right: 10px;
+    }
+
+    /* Estilo para o menu mobile */
+    .mobile-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #314c53;
+        padding: 20px 0;
+        z-index: 999;
+    }
+
+    /* Quando o menu mobile estiver aberto */
+    .mobile-nav.open {
+        display: flex;
+    }
+
+    .mobile-nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .mobile-nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 24px;
+        padding: 20px;
+        font-family: "Poppins", sans-serif;
+        font-weight: 400;
+    }
+
+    .profile-container button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: white;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    /* Ajustes adicionais para telas menores */
+    .header-container {
+        height: 70px;
+    }
+
+    .header-container .logo {
+        font-size: 12px;
+    }
+
+    .mobile-nav ul li a {
+        font-size: 20px;
+    }
+
+    .hamburger-menu div {
+        width: 20px;
+        height: 1.5px;
+        background-color: white;
+        margin: 5px 0;
+    }
 }
